@@ -1,4 +1,4 @@
-jquery.localize.js - An easy way to internationalize your web site.  
+jquery.localize.js - a jQuery plugin that makes it easy to internationalize your web site.  
 ===================================================================
 
 Synopsis 
