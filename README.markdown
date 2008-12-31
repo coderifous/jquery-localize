@@ -26,15 +26,13 @@ example-fr.json:
       greeting: "Bonjour!"
     }
     
-Step 3. Then just use the localize plugin.
+Step 3. Use the localize plugin.
 -------------------------------------
   
     // In a browser where the language is set to French
-    
     $("rel*=localize").localize("example")
   
     // You can also override the language detection, and pass in a language code
-    
     $("rel*=localize").localize("example", { language: "fr" })
   
 Gory Details
