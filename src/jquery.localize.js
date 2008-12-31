@@ -46,12 +46,10 @@
 
     function defaultCallback(data) {
       $.localize.data[pkg] = data
-      // console.log("ws: %o",$wrappedSet);
       var keys, value;
       $wrappedSet.each(function(){
         elem = $(this);
         key = elem.attr("rel").match(/localize\[(.*?)\]/)[1];
-        // console.log("keys: %s", key);
         value = valueForKey(key, data)
         if (elem.attr('tagName') == "INPUT") {
           elem.val(value);
