@@ -45,12 +45,12 @@
     }
 
     function defaultCallback(data) {
-      $.localize.data[pkg] = data
+      $.localize.data[pkg] = data;
       var keys, value;
       $wrappedSet.each(function(){
         elem = $(this);
         key = elem.attr("rel").match(/localize\[(.*?)\]/)[1];
-        value = valueForKey(key, data)
+        value = valueForKey(key, data);
         if (elem.attr('tagName') == "INPUT") {
           elem.val(value);
         }
@@ -59,7 +59,7 @@
         }
       });
     }
-    
+
     function notifyDelegateLanguageLoaded(data) {
       if (options.callback) {
         // pass the defaultCallback so it can be used in addition to some custom behavior
@@ -69,7 +69,7 @@
         defaultCallback(data);
       }
     }
-    
+
     function valueForKey(key, data){
       var keys  = key.split(/\./);
       var value = data;
@@ -91,11 +91,11 @@
 
     $.ajaxSetup(saveSettings);
   };
-  
+
   $.fn.localize = $.localize;
-  
+
   // Storage for retrieved data
-  $.localize.data = {}
+  $.localize.data = {};
 
   // Retrieve the default language set for the browser.
   $.defaultLanguage = normaliseLang(navigator.language
