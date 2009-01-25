@@ -46,8 +46,9 @@ The first argument of the localize method is the name of the language pack.  You
 Here's an example of loading several language packs:
 
     $("rel*=localize")
-      .localize("header_and_footer")
-      .localize("dashboard")
+      .localize("header")
+      .localize("sidebar")
+      .localize("footer")
 
 
 If the language of the browser were set to "fr", then the plugin would try to load:
@@ -63,6 +64,23 @@ if the language of the browser also had a country code, like "fr-FR", then the p
 * footer-fr-FR.json
 
 This let's you define partial language refinements for different regions.  For instance, you can have the base language translation file for a language that translates 100 different phrases, and for countries were maybe a some of those phrases would be out of place, you can just provide a country-specific file with _just those special phrases_ defined.
+
+Skipping Languages (aka Optimizing for My Language)
+------------------
+This is useful if you've got a default language.  For example, if all of your content is served in english, then you probably don't want the overhead of loading up unecessary (and probably non-existant) english langauge packs (foo-en.json)
+
+You can tell the localize plugin to always skip certain languages using the skipLanguage option:
+
+# using a string will skip ONLY if the language code matches exactly
+# this would prevent loading only if the language was "en-US"
+$("rel*=localize").localize("example", { skipLanguage: "en-US" })
+
+# using a regex will skip if the regex matches
+# this would prevent loading of any english language translations
+$("rel*=localize").localize("example", { skipLanguage: /^en/ })
+
+# using an array of strings will skip if any of the strings matches exactly
+$("rel*=localize").localize("example", { skipLanguage: ["en", "en-US"] })
 
 Applying the language file
 --------------------------
