@@ -55,7 +55,7 @@
           elem.val(value);
         }
         else {
-          elem.text(value);
+          elem.html(value);
         }
       });
     }
