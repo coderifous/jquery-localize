@@ -51,7 +51,7 @@
         elem = $(this);
         key = elem.attr("rel").match(/localize\[(.*?)\]/)[1];
         value = valueForKey(key, data);
-        if (elem.attr('tagName') == "INPUT") {
+        if (elem.is('input')) {
           elem.val(value);
         }
         if (elem.is('optgroup')) {
