@@ -54,6 +54,9 @@
         if (elem.attr('tagName') == "INPUT") {
           elem.val(value);
         }
+        if (elem.is('optgroup')) {
+          elem.attr("label", value);
+        }
         else {
           elem.html(value);
         }

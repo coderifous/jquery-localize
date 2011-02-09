@@ -15,6 +15,12 @@
     <p rel="localize[test.puts]">puts 2 + 2</p>
     <p rel="localize[test.array]">foo = %w(a b c)</p>
     <p rel="localize[test.iteration]">foo.each { |n| puts "Got #{n}" }</p>
+    <input rel="localize[test.input]" type="text" value="fail" />
+    <select>
+      <optgroup rel="localize[test.optgroup]" label="Fail">
+        <option rel="localize[test.option]" value="1">Fail</option>
+      </optgroup>
+    </select>
     <p rel="localize[message]">It failed :(</p>
     <script type="text/javascript" charset="utf-8">
       $(function(){

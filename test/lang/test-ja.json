@@ -2,7 +2,10 @@
   "test": {
     "puts":   "System.out.println(\"foo\")",
     "array":  "List foo = new List()",
-    "iteration": "Iterator foo = foo.iterator()"
+    "iteration": "Iterator foo = foo.iterator()",
+    "input": "success",
+    "optgroup": "success",
+    "option": "success"
   },
   "message": "It worked!"
 }
