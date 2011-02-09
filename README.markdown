@@ -1,4 +1,4 @@
-jquery.localize.js - a jQuery plugin that makes it easy to internationalize your web site.
+jquery.localize.js - a jQuery plugin that makes it easy to i18n your static web site.
 ===================================================================
 
 Synopsis
@@ -6,6 +6,7 @@ Synopsis
 
 * Lazily loads JSON translation files based on a simple naming convention.
 * By default, applies the translations to your document based on simple attribute convention.
+* Recently updated for jQuery 1.5
 
 Basic Usage
 -----------
