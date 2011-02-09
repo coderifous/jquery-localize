@@ -37,7 +37,7 @@
 
     function jsonCall(file, pkg, lang, level) {
       if (options.pathPrefix) file = options.pathPrefix + "/" + file;
-      $.getJSON(file, null, function(d){
+      $.getJSON(file, function(d){
         $.extend(intermediateLangData, d);
         notifyDelegateLanguageLoaded(intermediateLangData);
         loadLanguage(pkg, lang, level + 1);
