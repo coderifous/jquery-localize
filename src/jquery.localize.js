@@ -10,8 +10,6 @@
     var $wrappedSet          = this;
     var intermediateLangData = {};
     options = options || {};
-    var saveSettings = {async: $.ajaxSettings.async, timeout: $.ajaxSettings.timeout};
-    $.ajaxSetup({async: false, timeout: (options && options.timeout ? options.timeout : 500)});
 
     function loadLanguage(pkg, lang, level) {
       level = level || 1;
@@ -37,11 +35,20 @@
 
     function jsonCall(file, pkg, lang, level) {
       if (options.pathPrefix) file = options.pathPrefix + "/" + file;
-      $.getJSON(file, function(d){
+
+      $.ajax({
+        url: file,
+        dataType: "json",
+        async: false,
+        timeout: (options && options.timeout ? options.timeout : 500),
+        success: successFunc
+      });
+
+      function successFunc(d) {
         $.extend(intermediateLangData, d);
         notifyDelegateLanguageLoaded(intermediateLangData);
         loadLanguage(pkg, lang, level + 1);
-      });
+      }
     }
 
     function defaultCallback(data) {
@@ -108,8 +115,6 @@
 
     if (options.skipLanguage && lang.match( regexify(options.skipLanguage) )) return;
     loadLanguage(pkg, lang, 1);
-
-    $.ajaxSetup(saveSettings);
   };
 
   $.fn.localize = $.localize;
