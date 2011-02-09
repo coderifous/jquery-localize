@@ -17,17 +17,17 @@
       $(function(){
         var opts = { language: "en", pathPrefix: "lang", skipLanguage: "en" };
         $("[rel*=localize]").localize("test", opts)
-        
+
         var opts = { language: "en-US", pathPrefix: "lang", skipLanguage: /^en/ };
         $("[rel*=localize]").localize("test", opts)
-        
+
         var opts = { language: "en", pathPrefix: "lang", skipLanguage: ["en", "en-US"] };
         $("[rel*=localize]").localize("test", opts)
-        
+
         var opts = { language: "en-US", pathPrefix: "lang", skipLanguage: ["en", "en-US"] };
         $("[rel*=localize]").localize("test", opts)
       })
     </script>
   </body>
-  
+
 </html>

@@ -1,4 +1,4 @@
-{ 
+{
   test: {
     puts:   "System.out.println(\"foo\")",
     array:  "List foo = new List()",

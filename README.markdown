@@ -1,7 +1,7 @@
-jquery.localize.js - a jQuery plugin that makes it easy to internationalize your web site.  
+jquery.localize.js - a jQuery plugin that makes it easy to internationalize your web site.
 ===================================================================
 
-Synopsis 
+Synopsis
 --------
 
 * Lazily loads JSON translation files based on a simple naming convention.
@@ -16,25 +16,25 @@ Step 1. Use the "rel" attribute on tags whose content you want to be translated
 Somewhere in your html:
 
     <h1 rel="localize[greeting]"> Hello! </h1>
-    
+
 Step 2. Provide a JSON language file that has translations:
----------------------------------------------------------- 
+----------------------------------------------------------
 
 example-fr.json:
 
     {
       greeting: "Bonjour!"
     }
-    
+
 Step 3. Use the localize plugin.
 -------------------------------------
-  
+
     // In a browser where the language is set to French
     $("rel*=localize").localize("example")
-  
+
     // You can also override the language detection, and pass in a language code
     $("rel*=localize").localize("example", { language: "fr" })
-  
+
 Gory Details
 ============
 
@@ -74,11 +74,11 @@ You can tell the localize plugin to always skip certain languages using the skip
     # using a string will skip ONLY if the language code matches exactly
     # this would prevent loading only if the language was "en-US"
     $("rel*=localize").localize("example", { skipLanguage: "en-US" })
-    
+
     # using a regex will skip if the regex matches
     # this would prevent loading of any english language translations
     $("rel*=localize").localize("example", { skipLanguage: /^en/ })
-    
+
     # using an array of strings will skip if any of the strings matches exactly
     $("rel*=localize").localize("example", { skipLanguage: ["en", "en-US"] })
 
@@ -127,7 +127,7 @@ Callbacks
 
 You can provide a callback if you want to augment or replace the default callback provided by the plugin.  Your callback should take at least 1 argument: the language data (contents of your json file).  It can optionally accept a second argument, which is a reference to the default callback function.  This is handy if you still want the default behavior, but also need to do something else with the language data.
 
-    $("rel*=localize").localize("application", { 
+    $("rel*=localize").localize("application", {
       language: "es",
       callback: function(data, defaultCallback){
         data.title = data.title + currentBugName();
