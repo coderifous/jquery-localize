@@ -36,13 +36,21 @@
     function jsonCall(file, pkg, lang, level) {
       if (options.pathPrefix) file = options.pathPrefix + "/" + file;
 
-      $.ajax({
+      var ajaxOptions = {
         url: file,
         dataType: "json",
         async: false,
         timeout: (options && options.timeout ? options.timeout : 500),
         success: successFunc
-      });
+      };
+
+      // hack to work with serving from local file system.
+      // local file:// urls won't work in chrome:
+      // http://code.google.com/p/chromium/issues/detail?id=40787
+      if (window.location.protocol == "file:")
+        ajaxOptions.error = function(xhr){ successFunc($.parseJSON(xhr.responseText)); };
+
+      $.ajax(ajaxOptions);
 
       function successFunc(d) {
         $.extend(intermediateLangData, d);
