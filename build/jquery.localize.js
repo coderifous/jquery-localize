@@ -79,6 +79,15 @@
           return elem.val(value);
         } else if (elem.is('optgroup')) {
           return elem.attr("label", value);
+        } else if (elem.is('img')) {
+          value = valueForKey("" + key + ".alt", data);
+          if (value != null) {
+            elem.attr("alt", value);
+          }
+          value = valueForKey("" + key + ".src", data);
+          if (value != null) {
+            return elem.attr("src", value);
+          }
         } else {
           return elem.html(value);
         }

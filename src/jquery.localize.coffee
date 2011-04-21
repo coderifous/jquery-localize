@@ -68,6 +68,11 @@ $.localize = (pkg, options = {}) ->
         elem.val(value)
       else if elem.is('optgroup')
         elem.attr("label", value)
+      else if elem.is('img')
+        value = valueForKey("#{key}.alt", data)
+        elem.attr("alt", value) if value?
+        value = valueForKey("#{key}.src", data)
+        elem.attr("src", value) if value?
       else
         elem.html(value)
 

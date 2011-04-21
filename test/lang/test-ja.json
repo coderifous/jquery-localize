@@ -5,7 +5,11 @@
     "iteration": "Iterator foo = foo.iterator()",
     "input": "success",
     "optgroup": "success",
-    "option": "success"
+    "option": "success",
+    "ruby_image": {
+      "src": "ruby_round.gif",
+      "alt": "a round ruby"
+    }
   },
   "message": "It worked!"
 }
