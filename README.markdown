@@ -1,30 +1,24 @@
-jquery.localize.js - a jQuery plugin that makes it easy to i18n your static web site.
-===================================================================
+# jquery.localize.js - a jQuery plugin that makes it easy to i18n your static web site.
 
-Synopsis
---------
+## Synopsis
 
 * Lazily loads JSON translation files based on a simple naming convention.
 * By default, applies the translations to your document based on simple attribute convention.
 * Recently updated for jQuery 1.5 (tests use jQuery 1.5.2)
 
-Basic Usage
------------
+## Basic Usage
 
-Step 0. Load the jquery-localize plugin on your page.
------------------------------------------------------
+## Step 0. Load the jquery-localize plugin on your page.
 
 It's the file located at `build/jquery.localize.js`
 
-Step 1. Use the "rel" attribute on tags whose content you want to be translated
--------------------------------------------------------------------------------
+## Step 1. Use the "rel" attribute on tags whose content you want to be translated
 
 Somewhere in your html:
 
     <h1 rel="localize[greeting]"> Hello! </h1>
 
-Step 2. Provide a JSON language file that has translations:
------------------------------------------------------------
+## Step 2. Provide a JSON language file that has translations:
 
 example-fr.json:
 
@@ -32,8 +26,7 @@ example-fr.json:
       greeting: "Bonjour!"
     }
 
-Step 3. Use the localize plugin.
--------------------------------------
+## Step 3. Use the localize plugin.
 
     // In a browser where the language is set to French
     $("rel*=localize").localize("example")
@@ -41,11 +34,9 @@ Step 3. Use the localize plugin.
     // You can also override the language detection, and pass in a language code
     $("rel*=localize").localize("example", { language: "fr" })
 
-Gory Details
-============
+# Gory Details
 
-Language file loading
----------------------
+## Language file loading
 
 The first argument of the localize method is the name of the language pack.  You might have a different language pack for different parts of your website.
 
@@ -71,8 +62,8 @@ if the language of the browser also had a country code, like "fr-FR", then the p
 
 This let's you define partial language refinements for different regions.  For instance, you can have the base language translation file for a language that translates 100 different phrases, and for countries were maybe a some of those phrases would be out of place, you can just provide a country-specific file with _just those special phrases_ defined.
 
-Skipping Languages (aka Optimizing for My Language)
-------------------
+## Skipping Languages (aka Optimizing for My Language)
+
 This is useful if you've got a default language.  For example, if all of your content is served in english, then you probably don't want the overhead of loading up unecessary (and probably non-existant) english langauge packs (foo-en.json)
 
 You can tell the localize plugin to always skip certain languages using the skipLanguage option:
@@ -88,13 +79,11 @@ You can tell the localize plugin to always skip certain languages using the skip
     # using an array of strings will skip if any of the strings matches exactly
     $("rel*=localize").localize("example", { skipLanguage: ["en", "en-US"] })
 
-Applying the language file
---------------------------
+## Applying the language file
 
 If you rely on the default callback and follow the "rel" attribute conventions then the changes will be applied for you.
 
-Examples:
----------
+## Examples:
 
 **HTML:**
 
@@ -128,8 +117,7 @@ Examples:
 
     $("rel*=localize").localize("application", { language: "es" })
 
-Callbacks
----------
+## Callbacks
 
 You can provide a callback if you want to augment or replace the default callback provided by the plugin.  Your callback should take at least 1 argument: the language data (contents of your json file).  It can optionally accept a second argument, which is a reference to the default callback function.  This is handy if you still want the default behavior, but also need to do something else with the language data.
 
@@ -143,8 +131,20 @@ You can provide a callback if you want to augment or replace the default callbac
 
 See the tests for working examples.
 
-Credits & Licensing
--------------------
+# Contributing
+
+This plugin is written in [CoffeeScript](http://jashkenas.github.com/coffee-script/).
+The included `builder` script will run `coffee` with the necessary flags to
+automatically update the compiled javascript in the build/ directory any time you
+save changes to the coffee code under src/.
+
+If you're interested in contributing, please fork the [repository](https://github.com/coderifous/jquery-localize),
+make your changes, and send pull-requests.
+
+Learn more about [how to fork](http://help.github.com/fork-a-repo/) and
+[pull-requests](http://help.github.com/pull-requests/).
+
+# Credits & Licensing
 
 Copyright (c) Jim Garvin (http://github.com/coderifous), 2008.
 
