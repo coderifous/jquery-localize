@@ -6,20 +6,25 @@ Synopsis
 
 * Lazily loads JSON translation files based on a simple naming convention.
 * By default, applies the translations to your document based on simple attribute convention.
-* Recently updated for jQuery 1.5
+* Recently updated for jQuery 1.5 (tests use jQuery 1.5.2)
 
 Basic Usage
 -----------
 
+Step 0. Load the jquery-localize plugin on your page.
+-----------------------------------------------------
+
+It's the file located at `build/jquery.localize.js`
+
 Step 1. Use the "rel" attribute on tags whose content you want to be translated
---------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Somewhere in your html:
 
     <h1 rel="localize[greeting]"> Hello! </h1>
 
 Step 2. Provide a JSON language file that has translations:
-----------------------------------------------------------
+-----------------------------------------------------------
 
 example-fr.json:
 
