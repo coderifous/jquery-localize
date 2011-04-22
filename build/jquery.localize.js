@@ -76,7 +76,11 @@
         key = elem.attr("rel").match(/localize\[(.*?)\]/)[1];
         value = valueForKey(key, data);
         if (elem.is('input')) {
-          return elem.val(value);
+          if (elem.is("[placeholder]")) {
+            return elem.attr("placeholder", value);
+          } else {
+            return elem.val(value);
+          }
         } else if (elem.is('optgroup')) {
           return elem.attr("label", value);
         } else if (elem.is('img')) {

@@ -29,6 +29,11 @@ test "input tag value substitution", ->
   t.localize("test", @testOpts)
   equals t.val(), "input success"
 
+test "input tag placeholder substitution", ->
+  t = localizableTag("input", "test.input", placeholder: "placeholder fail")
+  t.localize("test", @testOpts)
+  equals t.attr("placeholder"), "input success"
+
 test "image tag src and alt substitution", ->
   t = localizableTag("img", "test.ruby_image", src: "ruby_square.gif", alt: "a square ruby")
   t.localize("test", @testOpts)
