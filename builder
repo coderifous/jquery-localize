@@ -1,1 +1,2 @@
-coffee -wco build src/jquery.localize.coffee
+coffee -wco build src/*.coffee &
+coffee -wc  test/*.coffee &

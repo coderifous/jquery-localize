@@ -1,15 +1,13 @@
 {
   "test": {
-    "puts":   "System.out.println(\"foo\")",
-    "array":  "List foo = new List()",
-    "iteration": "Iterator foo = foo.iterator()",
-    "input": "success",
-    "optgroup": "success",
-    "option": "success",
+    "nested": "nested success",
+    "input": "input success",
+    "optgroup": "optgroup success",
+    "option": "option success",
     "ruby_image": {
       "src": "ruby_round.gif",
       "alt": "a round ruby"
     }
   },
-  "message": "It worked!"
+  "basic": "basic success"
 }
