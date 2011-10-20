@@ -23,7 +23,7 @@ Somewhere in your html:
 example-fr.json:
 
     {
-      greeting: "Bonjour!"
+      "greeting": "Bonjour!"
     }
 
 ## Step 3. Use the localize plugin.
@@ -98,18 +98,18 @@ If you rely on the default callback and follow the "rel" attribute conventions t
 **application-es.json (fake spanish)**
 
     {
-      title: "Tracker Pro XT Deluxo",
-      search: {
-        placeholder: "Searcho...",
-        button: "Vamos!"
+      "title": "Tracker Pro XT Deluxo",
+      "search": {
+        "placeholder": "Searcho...",
+        "button": "Vamos!"
       },
-      footer: {
-        disclaimer: "Bewaro."
+      "footer": {
+        "disclaimer": "Bewaro."
       },
-      menu: {
-        dashboard: "Dashboardo",
-        list: "Bug Listo",
-        logout: "Exito"
+      "menu": {
+        "dashboard": "Dashboardo",
+        "list": "Bug Listo",
+        "logout": "Exito"
       }
     }
 
