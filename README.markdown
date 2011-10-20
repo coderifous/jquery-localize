@@ -29,10 +29,10 @@ example-fr.json:
 ## Step 3. Use the localize plugin.
 
     // In a browser where the language is set to French
-    $("rel*=localize").localize("example")
+    $("[rel*=localize]").localize("example")
 
     // You can also override the language detection, and pass in a language code
-    $("rel*=localize").localize("example", { language: "fr" })
+    $("[rel*=localize]").localize("example", { language: "fr" })
 
 # Gory Details
 
@@ -42,7 +42,7 @@ The first argument of the localize method is the name of the language pack.  You
 
 Here's an example of loading several language packs:
 
-    $("rel*=localize")
+    $("[rel*=localize]")
       .localize("header")
       .localize("sidebar")
       .localize("footer")
@@ -70,14 +70,14 @@ You can tell the localize plugin to always skip certain languages using the skip
 
     # using a string will skip ONLY if the language code matches exactly
     # this would prevent loading only if the language was "en-US"
-    $("rel*=localize").localize("example", { skipLanguage: "en-US" })
+    $("[rel*=localize]").localize("example", { skipLanguage: "en-US" })
 
     # using a regex will skip if the regex matches
     # this would prevent loading of any english language translations
-    $("rel*=localize").localize("example", { skipLanguage: /^en/ })
+    $("[rel*=localize]").localize("example", { skipLanguage: /^en/ })
 
     # using an array of strings will skip if any of the strings matches exactly
-    $("rel*=localize").localize("example", { skipLanguage: ["en", "en-US"] })
+    $("[rel*=localize]").localize("example", { skipLanguage: ["en", "en-US"] })
 
 ## Applying the language file
 
@@ -115,13 +115,13 @@ If you rely on the default callback and follow the "rel" attribute conventions t
 
 **Localize it!**
 
-    $("rel*=localize").localize("application", { language: "es" })
+    $("[rel*=localize]").localize("application", { language: "es" })
 
 ## Callbacks
 
 You can provide a callback if you want to augment or replace the default callback provided by the plugin.  Your callback should take at least 1 argument: the language data (contents of your json file).  It can optionally accept a second argument, which is a reference to the default callback function.  This is handy if you still want the default behavior, but also need to do something else with the language data.
 
-    $("rel*=localize").localize("application", {
+    $("[rel*=localize]").localize("application", {
       language: "es",
       callback: function(data, defaultCallback){
         data.title = data.title + currentBugName();
