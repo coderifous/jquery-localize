@@ -40,6 +40,11 @@ test "image tag src and alt substitution", ->
   equals t.attr("src"), "ruby_round.gif"
   equals t.attr("alt"), "a round ruby"
 
+test "chained call", ->
+  t = localizableTag("p", "basic", text: "basic fail")
+  t.localize("test", @testOpts).localize("test", @testOpts)
+  equals t.text(), "basic success"
+
 moreSetup ->
   @t = $('
     <select>

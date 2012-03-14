@@ -134,8 +134,9 @@
     };
     lang = normaliseLang(options.language ? options.language : $.defaultLanguage);
     if (!(options.skipLanguage && lang.match(regexify(options.skipLanguage)))) {
-      return loadLanguage(pkg, lang, 1);
+      loadLanguage(pkg, lang, 1);
     }
+    return wrappedSet;
   };
   $.fn.localize = $.localize;
   $.localize.data = {};

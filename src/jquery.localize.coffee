@@ -103,5 +103,7 @@ $.localize = (pkg, options = {}) ->
   lang = normaliseLang(if options.language then options.language else $.defaultLanguage)
   loadLanguage(pkg, lang, 1) unless (options.skipLanguage && lang.match(regexify(options.skipLanguage)))
 
+  wrappedSet
+
 $.fn.localize = $.localize
 $.localize.data = {}
