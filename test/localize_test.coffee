@@ -45,6 +45,11 @@ test "chained call", ->
   t.localize("test", @testOpts).localize("test", @testOpts)
   equals t.text(), "basic success"
 
+test "alternative file extension", ->
+  t = localizableTag("p", "basic", text: "basic fail")
+  t.localize("test", $.extend({ fileExtension: "foo" }, @testOpts))
+  equals t.text(), "basic success foo"
+
 moreSetup ->
   @t = $('
     <select>

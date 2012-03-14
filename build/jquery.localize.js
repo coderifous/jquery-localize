@@ -10,12 +10,13 @@
   };
   $.defaultLanguage = normaliseLang(navigator.language || navigator.userLanguage);
   $.localize = function(pkg, options) {
-    var defaultCallback, intermediateLangData, jsonCall, lang, loadLanguage, notifyDelegateLanguageLoaded, regexify, valueForKey, wrappedSet;
+    var defaultCallback, fileExtension, intermediateLangData, jsonCall, lang, loadLanguage, notifyDelegateLanguageLoaded, regexify, valueForKey, wrappedSet;
     if (options == null) {
       options = {};
     }
     wrappedSet = this;
     intermediateLangData = {};
+    fileExtension = options.fileExtension || "json";
     loadLanguage = function(pkg, lang, level) {
       var file;
       if (level == null) {
@@ -25,7 +26,7 @@
         case 1:
           intermediateLangData = {};
           if (options.loadBase) {
-            file = pkg + '.json';
+            file = pkg + ("." + fileExtension);
             return jsonCall(file, pkg, lang, level);
           } else {
             return loadLanguage(pkg, lang, 2);
@@ -33,13 +34,13 @@
           break;
         case 2:
           if (lang.length >= 2) {
-            file = "" + pkg + "-" + (lang.substring(0, 2)) + ".json";
+            file = "" + pkg + "-" + (lang.substring(0, 2)) + "." + fileExtension;
             return jsonCall(file, pkg, lang, level);
           }
           break;
         case 3:
           if (lang.length >= 5) {
-            file = "" + pkg + "-" + (lang.substring(0, 5)) + ".json";
+            file = "" + pkg + "-" + (lang.substring(0, 5)) + "." + fileExtension;
             return jsonCall(file, pkg, lang, level);
           }
       }
