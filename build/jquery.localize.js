@@ -90,6 +90,10 @@
           if (value != null) {
             elem.attr("alt", value);
           }
+          value = valueForKey("" + key + ".title", data);
+          if (value != null) {
+            elem.attr("title", value);
+          }
           value = valueForKey("" + key + ".src", data);
           if (value != null) {
             return elem.attr("src", value);
