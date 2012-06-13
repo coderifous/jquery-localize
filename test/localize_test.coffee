@@ -46,11 +46,12 @@ test "input tag placeholder substitution", ->
   t.localize("test", @testOpts)
   equals t.attr("placeholder"), "input success"
 
-test "image tag src and alt substitution", ->
-  t = localizableTagWithRel("img", "test.ruby_image", src: "ruby_square.gif", alt: "a square ruby")
+test "image tag src, alt, and title substitution", ->
+  t = localizableTagWithRel("img", "test.ruby_image", src: "ruby_square.gif", alt: "a square ruby", title: "A Square Ruby")
   t.localize("test", @testOpts)
   equals t.attr("src"), "ruby_round.gif"
   equals t.attr("alt"), "a round ruby"
+  equals t.attr("title"), "A Round Ruby"
 
 test "chained call", ->
   t = localizableTagWithRel("p", "basic", text: "basic fail")

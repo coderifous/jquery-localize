@@ -78,6 +78,8 @@ $.localize = (pkg, options = {}) ->
         elem.attr("alt", value) if value?
         value = valueForKey("#{key}.src", data)
         elem.attr("src", value) if value?
+        value = valueForKey("#{key}.title", data)
+        elem.attr("title", value) if value?
       else
         elem.html(value)
 

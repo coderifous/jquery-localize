@@ -6,7 +6,8 @@
     "option": "option success",
     "ruby_image": {
       "src": "ruby_round.gif",
-      "alt": "a round ruby"
+      "alt": "a round ruby",
+      "title": "A Round Ruby"
     }
   },
   "basic": "basic success"
