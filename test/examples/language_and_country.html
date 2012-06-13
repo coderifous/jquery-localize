@@ -12,11 +12,11 @@
 
   <body>
     <h1>Test localization...</h1>
-    <p rel="localize[message]">It failed :(</p>
+    <p data-localize="message">It failed :(</p>
     <script type="text/javascript" charset="utf-8">
       $(function(){
         var opts = { language: "ja-XX", pathPrefix: "../lang", skipLanguage: "en-US" };
-        $("[rel*=localize]").localize("test", opts)
+        $("[data-localize]").localize("test", opts)
       })
     </script>
   </body>

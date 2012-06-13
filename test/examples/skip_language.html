@@ -12,21 +12,21 @@
 
   <body>
     <h1>Test localization...</h1>
-    <p rel="localize[en_message]">Should not load en lang file.</p>
-    <p rel="localize[en_us_message]">Should not load en-US lang file.</p>
+    <p data-localize="en_message">Should not load en lang file.</p>
+    <p data-localize="en_us_message">Should not load en-US lang file.</p>
     <script type="text/javascript" charset="utf-8">
       $(function(){
         var opts = { language: "en", pathPrefix: "lang", skipLanguage: "en" };
-        $("[rel*=localize]").localize("test", opts)
+        $("[data-localize]").localize("test", opts)
 
         var opts = { language: "en-US", pathPrefix: "lang", skipLanguage: /^en/ };
-        $("[rel*=localize]").localize("test", opts)
+        $("[data-localize]").localize("test", opts)
 
         var opts = { language: "en", pathPrefix: "lang", skipLanguage: ["en", "en-US"] };
-        $("[rel*=localize]").localize("test", opts)
+        $("[data-localize]").localize("test", opts)
 
         var opts = { language: "en-US", pathPrefix: "lang", skipLanguage: ["en", "en-US"] };
-        $("[rel*=localize]").localize("test", opts)
+        $("[data-localize]").localize("test", opts)
       })
     </script>
   </body>

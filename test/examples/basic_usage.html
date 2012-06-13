@@ -12,22 +12,22 @@
 
   <body>
     <h1>Test localization...</h1>
-    <p rel="localize[test.nested]">puts 2 + 2</p>
-    <input rel="localize[test.input]" type="text" value="fail" />
+    <p data-localize="test.nested">puts 2 + 2</p>
+    <input data-localize="test.input" type="text" value="fail" />
     <select>
-      <optgroup rel="localize[test.optgroup]" label="Fail">
-        <option rel="localize[test.option]" value="1">Fail</option>
+      <optgroup data-localize="test.optgroup" label="Fail">
+        <option data-localize="test.option" value="1">Fail</option>
       </optgroup>
     </select>
     <p>
-      <img src="ruby_square.gif" alt="a square ruby" rel="localize[test.ruby_image]"/>
+      <img src="ruby_square.gif" alt="a square ruby" data-localize="test.ruby_image"/>
       Ruby image should be round.
     </p>
-    <p rel="localize[basic]">It failed :(</p>
+    <p data-localize="basic">It failed :(</p>
     <script type="text/javascript" charset="utf-8">
       $(function(){
         var opts = { language: "ja", pathPrefix: "../lang", skipLanguage: "en-US" };
-        $("[rel*=localize]").localize("test", opts)
+        $("[data-localize]").localize("test", opts)
       })
     </script>
   </body>

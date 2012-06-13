@@ -63,7 +63,8 @@ $.localize = (pkg, options = {}) ->
     $.localize.data[pkg] = data
     wrappedSet.each ->
       elem = $(this)
-      key = elem.attr("rel").match(/localize\[(.*?)\]/)[1]
+      key = elem.data("localize")
+      key ||= elem.attr("rel").match(/localize\[(.*?)\]/)[1]
       value = valueForKey(key, data)
       if elem.is('input')
         if elem.is("[placeholder]")

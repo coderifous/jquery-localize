@@ -14,11 +14,11 @@
 
 It's the file located at `build/jquery.localize.js`
 
-## Step 1. Use the "rel" attribute on tags whose content you want to be translated
+## Step 1. Mark up tags whose content you want to be translated
 
 Somewhere in your html:
 
-    <h1 rel="localize[greeting]"> Hello! </h1>
+    <h1 data-localize="greeting"> Hello! </h1>
 
 ## Step 2. Provide a JSON language file that has translations:
 
@@ -31,10 +31,10 @@ example-fr.json:
 ## Step 3. Use the localize plugin.
 
     // In a browser where the language is set to French
-    $("[rel*=localize]").localize("example")
+    $("[data-localize]").localize("example")
 
     // You can also override the language detection, and pass in a language code
-    $("[rel*=localize]").localize("example", { language: "fr" })
+    $("[data-localize]").localize("example", { language: "fr" })
 
 # Gory Details
 
@@ -44,7 +44,7 @@ The first argument of the localize method is the name of the language pack.  You
 
 Here's an example of loading several language packs:
 
-    $("[rel*=localize]")
+    $("[data-localize]")
       .localize("header")
       .localize("sidebar")
       .localize("footer")
@@ -72,30 +72,30 @@ You can tell the localize plugin to always skip certain languages using the skip
 
     # using a string will skip ONLY if the language code matches exactly
     # this would prevent loading only if the language was "en-US"
-    $("[rel*=localize]").localize("example", { skipLanguage: "en-US" })
+    $("[data-localize]").localize("example", { skipLanguage: "en-US" })
 
     # using a regex will skip if the regex matches
     # this would prevent loading of any english language translations
-    $("[rel*=localize]").localize("example", { skipLanguage: /^en/ })
+    $("[data-localize]").localize("example", { skipLanguage: /^en/ })
 
     # using an array of strings will skip if any of the strings matches exactly
-    $("[rel*=localize]").localize("example", { skipLanguage: ["en", "en-US"] })
+    $("[data-localize]").localize("example", { skipLanguage: ["en", "en-US"] })
 
 ## Applying the language file
 
-If you rely on the default callback and follow the "rel" attribute conventions then the changes will be applied for you.
+If you rely on the default callback and use the "data-localize" attribute then the changes will be applied for you.
 
 ## Examples:
 
 **HTML:**
 
-    <p rel="localize[title]">Tracker Pro XT Deluxe</p>
-    <p rel="localize[search.placeholder]">Search...</p>
-    <p rel="localize[search.button]">Go!</p>
-    <p rel="localize[footer.disclaimer]">Use at your own risk.</p>
-    <p rel="localize[menu.dashboard]">Dashboard</p>
-    <p rel="localize[menu.list]">Bug List</p>
-    <p rel="localize[menu.logout]">Logout</p>
+    <p data-localize="title">Tracker Pro XT Deluxe</p>
+    <p data-localize="search.placeholder">Search...</p>
+    <p data-localize="search.button">Go!</p>
+    <p data-localize="footer.disclaimer">Use at your own risk.</p>
+    <p data-localize="menu.dashboard">Dashboard</p>
+    <p data-localize="menu.list">Bug List</p>
+    <p data-localize="menu.logout">Logout</p>
 
 **application-es.json (fake spanish)**
 
@@ -117,13 +117,13 @@ If you rely on the default callback and follow the "rel" attribute conventions t
 
 **Localize it!**
 
-    $("[rel*=localize]").localize("application", { language: "es" })
+    $("[data-localize]").localize("application", { language: "es" })
 
 ## Callbacks
 
 You can provide a callback if you want to augment or replace the default callback provided by the plugin.  Your callback should take at least 1 argument: the language data (contents of your json file).  It can optionally accept a second argument, which is a reference to the default callback function.  This is handy if you still want the default behavior, but also need to do something else with the language data.
 
-    $("[rel*=localize]").localize("application", {
+    $("[data-localize]").localize("application", {
       language: "es",
       callback: function(data, defaultCallback){
         data.title = data.title + currentBugName();

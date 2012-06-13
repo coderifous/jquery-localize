@@ -74,7 +74,8 @@
       return wrappedSet.each(function() {
         var elem, key, value;
         elem = $(this);
-        key = elem.attr("rel").match(/localize\[(.*?)\]/)[1];
+        key = elem.data("localize");
+        key || (key = elem.attr("rel").match(/localize\[(.*?)\]/)[1]);
         value = valueForKey(key, data);
         if (elem.is('input')) {
           if (elem.is("[placeholder]")) {
