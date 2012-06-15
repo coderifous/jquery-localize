@@ -18,9 +18,9 @@ normaliseLang = (lang) ->
 $.defaultLanguage = normaliseLang(navigator.language || navigator.userLanguage)
 
 $.localize = (pkg, options = {}) ->
-  wrappedSet = this
+  wrappedSet           = this
   intermediateLangData = {}
-  fileExtension = options.fileExtension || "json"
+  fileExtension        = options.fileExtension || "json"
 
   loadLanguage = (pkg, lang, level = 1) ->
     switch level
@@ -59,36 +59,44 @@ $.localize = (pkg, options = {}) ->
       ajaxOptions.error = (xhr) -> successFunc($.parseJSON(xhr.responseText))
     $.ajax(ajaxOptions)
 
-  defaultCallback = (data) ->
-    $.localize.data[pkg] = data
-    wrappedSet.each ->
-      elem = $(this)
-      key = elem.data("localize")
-      key ||= elem.attr("rel").match(/localize\[(.*?)\]/)[1]
-      value = valueForKey(key, data)
-      if elem.is('input')
-        if elem.is("[placeholder]")
-          elem.attr("placeholder", value)
-        else
-          elem.val(value)
-      else if elem.is('optgroup')
-        elem.attr("label", value)
-      else if elem.is('img')
-        applyValueToAttribute(key, "alt", data, elem)
-        applyValueToAttribute(key, "src", data, elem)
-      else unless $.isPlainObject(value)
-        elem.html(value)
-
-      if $.isPlainObject(value)
-        applyValueToAttribute(key, "title", data, elem)
-        value = valueForKey("#{key}.text", data)
-        elem.text(value) if value?
-
   notifyDelegateLanguageLoaded = (data) ->
     if options.callback?
       options.callback(data, defaultCallback)
     else
       defaultCallback(data)
+
+  defaultCallback = (data) ->
+    $.localize.data[pkg] = data
+    wrappedSet.each ->
+      elem  = $(this)
+      key   = elem.data("localize")
+      key ||= elem.attr("rel").match(/localize\[(.*?)\]/)[1]
+      value = valueForKey(key, data)
+      localizeElement(elem, key, value)
+
+  localizeElement = (elem, key, value) ->
+    if          elem.is('input')       then localizeInputElement(elem, key, value)
+    else if     elem.is('img')         then localizeImageElement(elem, key, value)
+    else if     elem.is('optgroup')    then localizeOptgroupElement(elem, key, value)
+    else unless $.isPlainObject(value) then elem.html(value)
+    localizeForSpecialKeys(elem, value) if $.isPlainObject(value)
+
+  localizeInputElement = (elem, key, value) ->
+    if elem.is("[placeholder]")
+      elem.attr("placeholder", value)
+    else
+      elem.val(value)
+
+  localizeForSpecialKeys = (elem, value) ->
+    setAttrFromValueForKey(elem, "title", value)
+    setTextFromValueForKey(elem, "text", value)
+
+  localizeOptgroupElement = (elem, key, value) ->
+    elem.attr("label", value)
+
+  localizeImageElement = (elem, key, value) ->
+    setAttrFromValueForKey(elem, "alt", value)
+    setAttrFromValueForKey(elem, "src", value)
 
   valueForKey = (key, data) ->
     keys  = key.split(/\./)
@@ -97,9 +105,13 @@ $.localize = (pkg, options = {}) ->
       value = if value? then value[key] else null
     value
 
-  applyValueToAttribute = (key, attribute, data, elem) ->
-    value = valueForKey("#{key}.#{attribute}", data)
-    elem.attr(attribute, value) if value?
+  setAttrFromValueForKey = (elem, key, value) ->
+    value = valueForKey(key, value)
+    elem.attr(key, value) if value?
+
+  setTextFromValueForKey = (elem, key, value) ->
+    value = valueForKey(key, value)
+    elem.text(value) if value?
 
   regexify = (string_or_regex_or_array) ->
     if typeof(string_or_regex_or_array) == "string"
