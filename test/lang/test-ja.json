@@ -10,5 +10,9 @@
       "title": "A Round Ruby"
     }
   },
-  "basic": "basic success"
+  "basic": "basic success",
+  "with_title": {
+    "text": "with_title text success",
+    "title": "with_title title success"
+  }
 }

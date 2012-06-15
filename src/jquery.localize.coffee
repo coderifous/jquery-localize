@@ -74,14 +74,15 @@ $.localize = (pkg, options = {}) ->
       else if elem.is('optgroup')
         elem.attr("label", value)
       else if elem.is('img')
-        value = valueForKey("#{key}.alt", data)
-        elem.attr("alt", value) if value?
-        value = valueForKey("#{key}.src", data)
-        elem.attr("src", value) if value?
-        value = valueForKey("#{key}.title", data)
-        elem.attr("title", value) if value?
-      else
+        applyValueToAttribute(key, "alt", data, elem)
+        applyValueToAttribute(key, "src", data, elem)
+      else unless $.isPlainObject(value)
         elem.html(value)
+
+      if $.isPlainObject(value)
+        applyValueToAttribute(key, "title", data, elem)
+        value = valueForKey("#{key}.text", data)
+        elem.text(value) if value?
 
   notifyDelegateLanguageLoaded = (data) ->
     if options.callback?
@@ -95,6 +96,10 @@ $.localize = (pkg, options = {}) ->
     for key in keys
       value = if value? then value[key] else null
     value
+
+  applyValueToAttribute = (key, attribute, data, elem) ->
+    value = valueForKey("#{key}.#{attribute}", data)
+    elem.attr(attribute, value) if value?
 
   regexify = (string_or_regex_or_array) ->
     if typeof(string_or_regex_or_array) == "string"

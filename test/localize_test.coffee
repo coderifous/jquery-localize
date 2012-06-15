@@ -36,6 +36,12 @@ test "basic tag text substitution with nested key", ->
   t.localize("test", @testOpts)
   equals t.text(), "nested success"
 
+test "basic tag text substitution for special title key", ->
+  t = localizableTagWithDataLocalize("p", "with_title", text: "with_title element fail", title: "with_title title fail")
+  t.localize("test", @testOpts)
+  equals t.text(), "with_title text success"
+  equals t.attr("title"), "with_title title success"
+
 test "input tag value substitution", ->
   t = localizableTagWithRel("input", "test.input", val: "input fail")
   t.localize("test", @testOpts)
