@@ -52,6 +52,21 @@ test "input tag placeholder substitution", ->
   t.localize("test", @testOpts)
   equals t.attr("placeholder"), "input success"
 
+test "titled input tag value substitution", ->
+  t = localizableTagWithRel("input", "test.input_as_obj", val: "input_as_obj fail")
+  t.localize("test", @testOpts)
+  equals t.val(), "input_as_obj value success"
+
+test "titled input tag title substitution", ->
+  t = localizableTagWithRel("input", "test.input_as_obj", val: "input_as_obj fail")
+  t.localize("test", @testOpts)
+  equals t.attr("title"), "input_as_obj title success"
+
+test "titled input tag placeholder substitution", ->
+  t = localizableTagWithRel("input", "test.input_as_obj", placeholder: "placeholder fail")
+  t.localize("test", @testOpts)
+  equals t.attr("placeholder"), "input_as_obj value success"
+
 test "image tag src, alt, and title substitution", ->
   t = localizableTagWithRel("img", "test.ruby_image", src: "ruby_square.gif", alt: "a square ruby", title: "A Square Ruby")
   t.localize("test", @testOpts)

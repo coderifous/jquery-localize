@@ -2,6 +2,10 @@
   "test": {
     "nested": "nested success",
     "input": "input success",
+    "input_as_obj": {
+        "value": "input_as_obj value success",
+        "title": "input_as_obj title success"
+    },
     "optgroup": "optgroup success",
     "option": "option success",
     "ruby_image": {

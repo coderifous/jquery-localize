@@ -82,10 +82,11 @@ $.localize = (pkg, options = {}) ->
     localizeForSpecialKeys(elem, value) if $.isPlainObject(value)
 
   localizeInputElement = (elem, key, value) ->
+    val = if $.isPlainObject(value) then value.value else value
     if elem.is("[placeholder]")
-      elem.attr("placeholder", value)
+      elem.attr("placeholder", val)
     else
-      elem.val(value)
+      elem.val(val)
 
   localizeForSpecialKeys = (elem, value) ->
     setAttrFromValueForKey(elem, "title", value)
