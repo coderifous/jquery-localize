@@ -84,6 +84,8 @@ $.localize = (pkg, options = {}) ->
   localizeInputElement = (elem, key, value) ->
     if elem.is("[placeholder]")
       elem.attr("placeholder", value)
+    else if value.value
+      elem.val(value.value)
     else
       elem.val(value)
 
