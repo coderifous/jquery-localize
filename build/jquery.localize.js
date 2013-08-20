@@ -107,10 +107,15 @@
       }
     };
     localizeInputElement = function(elem, key, value) {
+      var val;
+      val = value;
+      if (value.value) {
+        val = value.value;
+      }
       if (elem.is("[placeholder]")) {
-        return elem.attr("placeholder", value);
+        return elem.attr("placeholder", val);
       } else {
-        return elem.val(value);
+        return elem.val(val);
       }
     };
     localizeForSpecialKeys = function(elem, value) {

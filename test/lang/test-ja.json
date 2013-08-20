@@ -1,7 +1,11 @@
 {
   "test": {
     "nested": "nested success",
-    "input": "input success",
+    "normalinput": "normalinput success",
+    "titledinput": {
+        "value": "titledinput value success",
+        "title": "titledinput title success"
+    },
     "optgroup": "optgroup success",
     "option": "option success",
     "ruby_image": {
