@@ -85,13 +85,11 @@ test "alternative file extension", ->
   equals t.text(), "basic success foo"
 
 moreSetup ->
-  @t = $('
-    <select>
+  @t = $('<select>
       <optgroup rel="localize[test.optgroup]" label="optgroup fail">
         <option rel="localize[test.option]" value="1">option fail</option>
       </optgroup>
-    </select>
-  ')
+    </select>')
 
 test "optgroup tag label substitution", ->
   t = @t.find("optgroup")

@@ -6,7 +6,7 @@
 
 * Lazily loads JSON translation files based on a simple naming convention.
 * By default, applies the translations to your document based on simple attribute convention.
-* Recently updated for jQuery 1.7 (tests use jQuery 1.7.2)
+* Tested with jQuery versions 1.7.2, 1.8.3, 1.9.1, 1.10.2, and 2.0.3
 
 ## Basic Usage
 
