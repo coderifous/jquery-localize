@@ -43,14 +43,29 @@ test "basic tag text substitution for special title key", ->
   equals t.attr("title"), "with_title title success"
 
 test "input tag value substitution", ->
-  t = localizableTagWithRel("input", "test.input", val: "input fail")
+  t = localizableTagWithRel("input", "test.normalinput", val: "normalinput fail")
   t.localize("test", @testOpts)
-  equals t.val(), "input success"
+  equals t.val(), "normalinput success"
 
 test "input tag placeholder substitution", ->
-  t = localizableTagWithRel("input", "test.input", placeholder: "placeholder fail")
+  t = localizableTagWithRel("input", "test.normalinput", placeholder: "placeholder fail")
   t.localize("test", @testOpts)
-  equals t.attr("placeholder"), "input success"
+  equals t.attr("placeholder"), "normalinput success"
+
+test "titled input tag value substitution", ->
+  t = localizableTagWithRel("input", "test.titledinput", val: "titledinput fail")
+  t.localize("test", @testOpts)
+  equals t.val(), "titledinput value success"
+
+test "titled input tag title substitution", ->
+  t = localizableTagWithRel("input", "test.titledinput", val: "titledinput fail")
+  t.localize("test", @testOpts)
+  equals t.attr("title"), "titledinput title success"
+
+test "titled input tag placeholder substitution", ->
+  t = localizableTagWithRel("input", "test.titledinput", placeholder: "placeholder fail")
+  t.localize("test", @testOpts)
+  equals t.attr("placeholder"), "titledinput value success"
 
 test "image tag src, alt, and title substitution", ->
   t = localizableTagWithRel("img", "test.ruby_image", src: "ruby_square.gif", alt: "a square ruby", title: "A Square Ruby")
