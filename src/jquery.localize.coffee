@@ -50,6 +50,8 @@ $.localize = (pkg, options = {}) ->
       url: file
       dataType: "json"
       async: false
+      # http://encosia.com/3-mistakes-to-avoid-when-using-jquery-with-aspnet-ajax/
+      contentType: "application/json; charset=utf-8"
       timeout: if options.timeout? then options.timeout else 500
       success: successFunc
     # hack to work with serving from local file system.
