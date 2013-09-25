@@ -42,6 +42,37 @@ test "basic tag text substitution for special title key", ->
   equals t.text(), "with_title text success"
   equals t.attr("title"), "with_title title success"
 
+test "span tag text substitution", ->
+  t = localizableTagWithRel("span", "basic", text: "basic fail")
+  t.localize("test", @testOpts)
+  equals t.text(), "basic success"
+
+test "span tag text substitution using data-localize instead of rel", ->
+  t = localizableTagWithDataLocalize("span", "basic", text: "basic fail")
+  t.localize("test", @testOpts)
+  equals t.text(), "basic success"
+
+test "span tag text substitution with nested key", ->
+  t = localizableTagWithRel("span", "test.nested", text: "nested fail")
+  t.localize("test", @testOpts)
+  equals t.text(), "nested success"
+
+test "span tag text substitution for special title key", ->
+  t = localizableTagWithDataLocalize("span", "with_title", text: "with_title element fail", title: "with_title title fail")
+  t.localize("test", @testOpts)
+  equals t.text(), "with_title text success"
+  equals t.attr("title"), "with_title title success"
+
+test "span tag text substitution with bad key does nothing", ->
+  t = localizableTagWithRel("span", "span.doesnt_exist", text: "span success")
+  t.localize("test", @testOpts)
+  equals t.text(), "span success"
+
+test "span tag text substitution using data-localize instead of rel with bad key does nothing", ->
+  t = localizableTagWithDataLocalize("span", "span.doesnt_exist", text: "span success")
+  t.localize("test", @testOpts)
+  equals t.text(), "span success"
+
 test "input tag value substitution", ->
   t = localizableTagWithRel("input", "test.input", val: "input fail")
   t.localize("test", @testOpts)
@@ -104,7 +135,7 @@ test "option tag text substitution", ->
 module "Options"
 
 test "pathPrefix loads lang files from custom path", ->
-  opts =  language: "fo", pathPrefix: "/test/lang/custom"
+  opts =  language: "fo", pathPrefix: "../test/lang/custom"
   t = localizableTagWithRel("p", "path_prefix", text: "pathPrefix fail")
   t.localize("test", opts)
   equals t.text(), "pathPrefix success"
