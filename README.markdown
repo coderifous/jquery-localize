@@ -19,6 +19,7 @@ It's the file located at `build/jquery.localize.js`
 Somewhere in your html:
 
     <h1 data-localize="greeting"> Hello! </h1>
+    <h1 rel="localize[greeting]"> Hello! </h1>
 
 ## Step 2. Provide a JSON language file that has translations:
 
