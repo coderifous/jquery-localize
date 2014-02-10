@@ -78,7 +78,8 @@ $.localize = (pkg, options = {}) ->
     if          elem.is('input')       then localizeInputElement(elem, key, value)
     else if     elem.is('img')         then localizeImageElement(elem, key, value)
     else if     elem.is('optgroup')    then localizeOptgroupElement(elem, key, value)
-    else unless $.isPlainObject(value) then elem.html(value)
+    else if     (value != null) and not $.isPlainObject(value) \
+                                       then elem.html(value)
     localizeForSpecialKeys(elem, value) if $.isPlainObject(value)
 
   localizeInputElement = (elem, key, value) ->
