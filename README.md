@@ -1,5 +1,7 @@
 # Localize
 
+[![Build Status](https://travis-ci.org/jgolla/jquery-localize.png?branch=master)](https://travis-ci.org/jgolla/jquery-localize)
+
 A jQuery plugin that makes it easy to i18n your static web site.
 
 ## Getting Started
