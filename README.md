@@ -37,11 +37,15 @@ example-fr.json:
 
 ### Use the localize plugin.
 
-    // In a browser where the language is set to French
-    $("[data-localize]").localize("example")
+```html
+<script>
+// In a browser where the language is set to French
+$("[data-localize]").localize("example")
 
-    // You can also override the language detection, and pass in a language code
-    $("[data-localize]").localize("example", { language: "fr" })
+// You can also override the language detection, and pass in a language code
+$("[data-localize]").localize("example", { language: "fr" })
+</script>
+```
 
 ## Gory Details
 
@@ -51,11 +55,14 @@ The first argument of the localize method is the name of the language pack.  You
 
 Here's an example of loading several language packs:
 
-    $("[data-localize]")
-      .localize("header")
-      .localize("sidebar")
-      .localize("footer")
-
+```html
+<script>
+$("[data-localize]")
+    .localize("header")
+    .localize("sidebar")
+    .localize("footer")
+</script>
+```
 
 If the language of the browser were set to "fr", then the plugin would try to load:
 
@@ -128,7 +135,7 @@ If you rely on the default callback and use the "data-localize" attribute then t
 
 ```html
 <script>
-$("[data-localize]").localize("application", { language: "es" })
+$("[data-localize]").localize("application", { language: "es" });
 </script>
 ```
 
@@ -136,13 +143,17 @@ $("[data-localize]").localize("application", { language: "es" })
 
 You can provide a callback if you want to augment or replace the default callback provided by the plugin.  Your callback should take at least 1 argument: the language data (contents of your json file).  It can optionally accept a second argument, which is a reference to the default callback function.  This is handy if you still want the default behavior, but also need to do something else with the language data.
 
-    $("[data-localize]").localize("application", {
-      language: "es",
-      callback: function(data, defaultCallback){
+```html
+<script>
+$("[data-localize]").localize("application", {
+    language: "es",
+    callback: function(data, defaultCallback){
         data.title = data.title + currentBugName();
         defaultCallback(data)
-      }
-    })
+    }
+});
+</script>
+```
 
 See the test/samples for working examples.
 
