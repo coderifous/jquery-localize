@@ -12,18 +12,20 @@ A jQuery plugin that makes it easy to i18n your static web site.
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/jgolla/jquery-localize/master/dist/localize.min.js
-[max]: https://raw.github.com/jgolla/jquery-localize/master/dist/localize.js
+[min]: https://raw.github.com/jgolla/jquery-localize/master/dist/jquery.localize.min.js
+[max]: https://raw.github.com/jgolla/jquery-localize/master/dist/jquery.localize.js
 
 ### Load the jquery-localize plugin on your page.
 
-It's the file located at `build/jquery.localize.js`
+It's the file located at `dist/jquery.localize.js`
 
 ### Mark up tags whose content you want to be translated
 
 Somewhere in your html:
 
-    <h1 data-localize="greeting"> Hello! </h1>
+```html
+<h1 data-localize="greeting"> Hello! </h1>
+```
 
 ### Provide a JSON language file that has translations:
 
@@ -94,13 +96,15 @@ If you rely on the default callback and use the "data-localize" attribute then t
 
 **HTML:**
 
-    <p data-localize="title">Tracker Pro XT Deluxe</p>
-    <p data-localize="search.placeholder">Search...</p>
-    <p data-localize="search.button">Go!</p>
-    <p data-localize="footer.disclaimer">Use at your own risk.</p>
-    <p data-localize="menu.dashboard">Dashboard</p>
-    <p data-localize="menu.list">Bug List</p>
-    <p data-localize="menu.logout">Logout</p>
+```html
+<p data-localize="title">Tracker Pro XT Deluxe</p>
+<p data-localize="search.placeholder">Search...</p>
+<p data-localize="search.button">Go!</p>
+<p data-localize="footer.disclaimer">Use at your own risk.</p>
+<p data-localize="menu.dashboard">Dashboard</p>
+<p data-localize="menu.list">Bug List</p>
+<p data-localize="menu.logout">Logout</p>
+```
 
 **application-es.json (fake spanish)**
 
@@ -122,7 +126,11 @@ If you rely on the default callback and use the "data-localize" attribute then t
 
 **Localize it!**
 
-    $("[data-localize]").localize("application", { language: "es" })
+```html
+<script>
+$("[data-localize]").localize("application", { language: "es" })
+</script>
+```
 
 ### Callbacks
 
