@@ -1,9 +1,11 @@
-# Copyright (c) Jim Garvin (http://github.com/coderifous), 2008.
-# Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses.
-# Written by Jim Garvin (@coderifous) for use on LMGTFY.com.
-# http://github.com/coderifous/jquery-localize
-# Based off of Keith Wood's Localisation jQuery plugin.
-# http://keith-wood.name/localisation.html
+###
+Copyright (c) Jim Garvin (http://github.com/coderifous), 2008.
+Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses.
+Written by Jim Garvin (@coderifous) for use on LMGTFY.com.
+http://github.com/coderifous/jquery-localize
+Based off of Keith Wood's Localisation jQuery plugin.
+http://keith-wood.name/localisation.html
+###
 
 $ = jQuery
 
@@ -46,12 +48,16 @@ $.localize = (pkg, options = {}) ->
       $.extend(intermediateLangData, d)
       notifyDelegateLanguageLoaded(intermediateLangData)
       loadLanguage(pkg, lang, level + 1)
+    errorFunc = ->
+      if options.fallback && options.fallback != lang
+        loadLanguage(pkg, options.fallback)
     ajaxOptions =
       url: file
       dataType: "json"
       async: false
       timeout: if options.timeout? then options.timeout else 500
       success: successFunc
+      error: errorFunc
     # hack to work with serving from local file system.
     # local file:// urls won't work in chrome:
     # http://code.google.com/p/chromium/issues/detail?id=40787
