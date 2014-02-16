@@ -84,16 +84,20 @@ This is useful if you've got a default language.  For example, if all of your co
 
 You can tell the localize plugin to always skip certain languages using the skipLanguage option:
 
-    # using a string will skip ONLY if the language code matches exactly
-    # this would prevent loading only if the language was "en-US"
-    $("[data-localize]").localize("example", { skipLanguage: "en-US" })
+```html
+<script>
+//using a string will skip ONLY if the language code matches exactly
+//this would prevent loading only if the language was "en-US"
+$("[data-localize]").localize("example", { skipLanguage: "en-US" })
 
-    # using a regex will skip if the regex matches
-    # this would prevent loading of any english language translations
-    $("[data-localize]").localize("example", { skipLanguage: /^en/ })
+//using a regex will skip if the regex matches
+//this would prevent loading of any english language translations
+$("[data-localize]").localize("example", { skipLanguage: /^en/ })
 
-    # using an array of strings will skip if any of the strings matches exactly
-    $("[data-localize]").localize("example", { skipLanguage: ["en", "en-US"] })
+//using an array of strings will skip if any of the strings matches exactly
+$("[data-localize]").localize("example", { skipLanguage: ["en", "en-US"] })
+</script>
+```
 
 ### Applying the language file
 
