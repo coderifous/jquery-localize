@@ -163,20 +163,7 @@ See the test/samples for working examples.
 
 # Contributing
 
-This plugin is written in [CoffeeScript](http://jashkenas.github.com/coffee-script/).
-The included `builder` script will run `coffee` with the necessary flags to
-automatically update the compiled javascript in the build/ directory any time you
-save changes to the coffee code under src/.
-
-If you're interested in contributing, please fork the [repository](https://github.com/coderifous/jquery-localize),
-make your changes, and send pull-requests.
-
-Tests use QUnit.  Run them by serving from the root of the project and
-navigating to the test/ directory, which has an index.html that takes it from
-there.
-
-Learn more about [how to fork](http://help.github.com/fork-a-repo/) and
-[pull-requests](http://help.github.com/pull-requests/).
+To contribute to this plugin, please read the [contributing guidelines](CONTRIBUTING.md).
 
 # Credits & Licensing
 
