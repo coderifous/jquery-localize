@@ -1,6 +1,6 @@
 # jquery.localize.js
 
-[![Build Status](https://travis-ci.org/jgolla/jquery-localize.png?branch=master)](https://travis-ci.org/jgolla/jquery-localize)
+[![Build Status](https://travis-ci.org/coderifous/jquery-localize.png?branch=master)](https://travis-ci.org/coderifous/jquery-localize)
 
 A jQuery plugin that makes it easy to i18n your static web site.
 
@@ -12,8 +12,8 @@ A jQuery plugin that makes it easy to i18n your static web site.
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/jgolla/jquery-localize/master/dist/jquery.localize.min.js
-[max]: https://raw.github.com/jgolla/jquery-localize/master/dist/jquery.localize.js
+[min]: https://raw.github.com/coderifous/jquery-localize/master/dist/jquery.localize.min.js
+[max]: https://raw.github.com/coderifous/jquery-localize/master/dist/jquery.localize.js
 
 ### Load the jquery-localize plugin on your page.
 
