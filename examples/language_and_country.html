@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Localize Test</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../build/jquery.localize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../dist/jquery.localize.min.js" type="text/javascript" charset="utf-8"></script>
   </head>
 
   <body>
@@ -15,7 +15,7 @@
     <p data-localize="message">It failed :(</p>
     <script type="text/javascript" charset="utf-8">
       $(function(){
-        var opts = { language: "ja-XX", pathPrefix: "../lang", skipLanguage: "en-US" };
+        var opts = { language: "ja-XX", pathPrefix: "../test/lang", skipLanguage: "en-US" };
         $("[data-localize]").localize("test", opts)
       })
     </script>
