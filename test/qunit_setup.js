@@ -1,23 +1,18 @@
-(function() {
+(function(global) {
   var originalModule, originalTest, setupFn, teardownFn;
-
   setupFn = function() {
     return null;
   };
-
   teardownFn = function() {
     return null;
   };
-
-  window.setup = function(fn) {
+  global.setup = function(fn) {
     return setupFn = fn;
   };
-
-  window.teardown = function(fn) {
+  global.teardown = function(fn) {
     return teardownFn = fn;
   };
-
-  window.moreSetup = function(fn) {
+  global.moreSetup = function(fn) {
     var origSetup;
     origSetup = setupFn;
     return setup(function() {
@@ -25,8 +20,7 @@
       return fn.call(this);
     });
   };
-
-  window.moreTeardown = function(fn) {
+  global.moreTeardown = function(fn) {
     var origTeardown;
     origTeardown = teardownFn;
     return teardown(function() {
@@ -34,8 +28,7 @@
       return origTeardown.call(this);
     });
   };
-
-  window.clearSetup = function() {
+  global.clearSetup = function() {
     setup(function() {
       return null;
     });
@@ -43,17 +36,13 @@
       return null;
     });
   };
-
-  originalModule = window.module;
-
-  window.module = function(description) {
+  originalModule = global.module;
+  global.module = function(description) {
     clearSetup();
     return originalModule(description);
   };
-
-  originalTest = window.test;
-
-  window.test = function(description, testFn) {
+  originalTest = global.test;
+  return global.test = function(description, testFn) {
     var setupSnapshot, teardownSnapshot;
     setupSnapshot = setupFn;
     teardownSnapshot = teardownFn;
@@ -65,5 +54,4 @@
       return teardownSnapshot.call(context);
     });
   };
-
-}).call(this);
+})(window);
