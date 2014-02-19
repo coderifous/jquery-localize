@@ -163,7 +163,7 @@ See the test/samples for working examples.
 
 # Contributing
 
-To contribute to this plugin, please read the [contributing guidelines][CONTRIBUTING.md].
+To contribute to this plugin, please read the [contributing guidelines](CONTRIBUTING.md).
 
 # Credits & Licensing
 
