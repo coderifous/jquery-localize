@@ -98,7 +98,9 @@ http://keith-wood.name/localisation.html
         key = elem.data("localize");
         key || (key = elem.attr("rel").match(/localize\[(.*?)\]/)[1]);
         value = valueForKey(key, data);
-        return localizeElement(elem, key, value);
+        if (value != null) {
+          return localizeElement(elem, key, value);
+        }
       });
     };
     localizeElement = function(elem, key, value) {

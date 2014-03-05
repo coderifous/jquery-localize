@@ -75,6 +75,15 @@
     t.localize("test", this.testOpts);
     return equal(t.val(), "input success");
   });
+  test("input tag value after second localization without key", function() {
+    var t;
+    t = localizableTagWithRel("input", "test.input", {
+      val: "input fail"
+    });
+    t.localize("test", this.testOpts);
+    t.localize("test2", this.testOpts);
+    return equal(t.val(), "input success");
+  });
   test("input tag placeholder substitution", function() {
     var t;
     t = localizableTagWithRel("input", "test.input", {

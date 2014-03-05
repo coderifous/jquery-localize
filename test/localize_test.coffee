@@ -49,6 +49,12 @@ do ($ = jQuery) ->
     t.localize("test", @testOpts)
     equal t.val(), "input success"
 
+  test "input tag value after second localization without key", ->
+    t = localizableTagWithRel("input", "test.input", val: "input fail")
+    t.localize("test", @testOpts)
+    t.localize("test2", @testOpts)
+    equal t.val(), "input success"
+
   test "input tag placeholder substitution", ->
     t = localizableTagWithRel("input", "test.input", placeholder: "placeholder fail")
     t.localize("test", @testOpts)

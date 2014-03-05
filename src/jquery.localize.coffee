@@ -78,7 +78,7 @@ do ($ = jQuery) ->
         key   = elem.data("localize")
         key ||= elem.attr("rel").match(/localize\[(.*?)\]/)[1]
         value = valueForKey(key, data)
-        localizeElement(elem, key, value)
+        localizeElement(elem, key, value) if value?
 
     localizeElement = (elem, key, value) ->
       if          elem.is('input')       then localizeInputElement(elem, key, value)
