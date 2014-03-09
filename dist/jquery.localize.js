@@ -181,6 +181,13 @@ http://keith-wood.name/localisation.html
     if (!(options.skipLanguage && lang.match(regexify(options.skipLanguage)))) {
       loadLanguage(pkg, lang, 1);
     }
+    else {
+      if (options.skipCallback) {
+        options.skipCallback({
+          'language': $.defaultLanguage,
+        });
+      }
+    }
     return wrappedSet;
   };
   $.fn.localize = $.localize;
