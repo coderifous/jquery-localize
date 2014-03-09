@@ -147,10 +147,13 @@ $("[data-localize]").localize("application", { language: "es" });
 
 You can provide a callback if you want to augment or replace the default callback provided by the plugin.  Your callback should take at least 1 argument: the language data (contents of your json file).  It can optionally accept a second argument, which is a reference to the default callback function.  This is handy if you still want the default behavior, but also need to do something else with the language data.
 
+Also you are able to handle a situation if a language has been skipped.
+
 ```html
 <script>
 $("[data-localize]").localize("application", {
     language: "es",
+    skipLanguage: /^en/,
     
     callback: function(data, defaultCallback){
         data.title = data.title + currentBugName();
@@ -158,6 +161,9 @@ $("[data-localize]").localize("application", {
     },
     
     skipCallback: function(ctx) {
+        // at this point we have a skipped language
+        // as defined in 'skipLanguage' option
+    
         alert('skipped language: ' + ctx.language + "\n" + 
               'default language: ' + ctx.defaultLanguage);
     }
