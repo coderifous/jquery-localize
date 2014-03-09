@@ -1,11 +1,9 @@
 
 /*
-Copyright (c) Jim Garvin (http://github.com/coderifous), 2008.
+Copyright (c) Marcel Joachim Kloubert (http://github.com/mkloubert), 2014.
 Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses.
-Written by Jim Garvin (@coderifous) for use on LMGTFY.com.
-http://github.com/coderifous/jquery-localize
-Based off of Keith Wood's Localisation jQuery plugin.
-http://keith-wood.name/localisation.html
+This is a fork of coderifous's Localisation jQuery plugin.
+https://github.com/coderifous/jquery-localize
  */
 (function($) {
   var normaliseLang;
