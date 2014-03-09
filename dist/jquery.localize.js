@@ -184,7 +184,8 @@ http://keith-wood.name/localisation.html
     else {
       if (options.skipCallback) {
         options.skipCallback({
-          'language': $.defaultLanguage,
+          'language': lang,
+          'defaultLanguage': $.defaultLanguage,
         });
       }
     }
