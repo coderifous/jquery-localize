@@ -147,13 +147,25 @@ $("[data-localize]").localize("application", { language: "es" });
 
 You can provide a callback if you want to augment or replace the default callback provided by the plugin.  Your callback should take at least 1 argument: the language data (contents of your json file).  It can optionally accept a second argument, which is a reference to the default callback function.  This is handy if you still want the default behavior, but also need to do something else with the language data.
 
+Also you are able to handle a situation if a language has been skipped.
+
 ```html
 <script>
 $("[data-localize]").localize("application", {
     language: "es",
+    skipLanguage: /^en/,
+    
     callback: function(data, defaultCallback){
         data.title = data.title + currentBugName();
         defaultCallback(data)
+    },
+    
+    skipCallback: function(ctx) {
+        // at this point we have a skipped language
+        // as defined in 'skipLanguage' option
+    
+        alert('skipped language: ' + ctx.language + "\n" + 
+              'default language: ' + ctx.defaultLanguage);
     }
 });
 </script>
@@ -167,14 +179,11 @@ To contribute to this plugin, please read the [contributing guidelines](CONTRIBU
 
 # Credits & Licensing
 
-Copyright (c) Jim Garvin (http://github.com/coderifous), 2008.
+Copyright (c) Marcel Joachim Kloubert (http://github.com/mkloubert), 2014.
 
 Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses.
 
-Written by Jim Garvin (@coderifous) for use on LMGTFY.com.
-Please use it, and contribute changes.
+http://github.com/mkloubert/jquery-localize
 
-http://github.com/coderifous/jquery-localize
-
-Based off of Keith Wood's Localisation jQuery plugin.
-http://keith-wood.name/localisation.html
+This is a fork of coderifous's Localisation jQuery plugin.
+https://github.com/coderifous/jquery-localize
