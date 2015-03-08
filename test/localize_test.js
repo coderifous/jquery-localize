@@ -215,6 +215,18 @@
     t.localize("test", opts);
     return equal(t.text(), "country code success");
   });
+  test("load language-country code json file directly", function() {
+    var opts, t;
+    opts = {
+      language: "zh-CN",
+      pathPrefix: "lang"
+    };
+    t = localizableTagWithRel("p", "message", {
+      text: "language-country code fail"
+    });
+    t.localize("test", opts);
+    return equal(t.text(), "language-country code success");
+  });
   module("Language optimization");
   test("skipping language using string match", function() {
     var opts, t;

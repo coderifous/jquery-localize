@@ -64,6 +64,9 @@ http://keith-wood.name/localisation.html
         return loadLanguage(pkg, lang, level + 1);
       };
       errorFunc = function() {
+        if (level < 3) {
+          loadLanguage(pkg, lang, level + 1);
+        }
         if (options.fallback && options.fallback !== lang) {
           return loadLanguage(pkg, options.fallback);
         }
