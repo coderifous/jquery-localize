@@ -49,6 +49,9 @@ do ($ = jQuery) ->
         notifyDelegateLanguageLoaded(intermediateLangData)
         loadLanguage(pkg, lang, level + 1)
       errorFunc = ->
+        # by Haixing Hu: load the next level even if the higher level failed.
+        if level < 3
+          loadLanguage(pkg, lang, level + 1)
         if options.fallback && options.fallback != lang
           loadLanguage(pkg, options.fallback)
       ajaxOptions =
