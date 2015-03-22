@@ -106,6 +106,8 @@ http://keith-wood.name/localisation.html
     localizeElement = function(elem, key, value) {
       if (elem.is('input')) {
         localizeInputElement(elem, key, value);
+      } else if (elem.is('textarea')) {
+        localizeInputElement(elem, key, value);
       } else if (elem.is('img')) {
         localizeImageElement(elem, key, value);
       } else if (elem.is('optgroup')) {

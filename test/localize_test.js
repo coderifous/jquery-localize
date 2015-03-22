@@ -92,6 +92,14 @@
     t.localize("test", this.testOpts);
     return equal(t.attr("placeholder"), "input success");
   });
+  test("textarea tag placeholder substitution", function() {
+    var t;
+    t = localizableTagWithRel("textarea", "test.input", {
+      placeholder: "placeholder fail"
+    });
+    t.localize("test", this.testOpts);
+    return equal(t.attr("placeholder"), "input success");
+  });
   test("titled input tag value substitution", function() {
     var t;
     t = localizableTagWithRel("input", "test.input_as_obj", {
