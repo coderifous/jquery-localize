@@ -128,6 +128,16 @@
     equal(t.attr("alt"), "a round ruby");
     return equal(t.attr("title"), "A Round Ruby");
   });
+  test("link tag href substitution", function() {
+    var t;
+    t = localizableTagWithRel("a", "test.link", {
+      href: "http://fail",
+      text: "fail"
+    });
+    t.localize("test", this.testOpts);
+    equal(t.attr("href"), "http://success");
+    return equal(t.text(), "success");
+  });
   test("chained call", function() {
     var t;
     t = localizableTagWithRel("p", "basic", {

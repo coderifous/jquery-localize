@@ -12,6 +12,10 @@
       "src": "ruby_round.gif",
       "alt": "a round ruby",
       "title": "A Round Ruby"
+    },
+    "link": {
+      "text": "success",
+      "href": "http://success"
     }
   },
   "basic": "basic success",

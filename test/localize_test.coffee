@@ -82,6 +82,12 @@ do ($ = jQuery) ->
     equal t.attr("alt"), "a round ruby"
     equal t.attr("title"), "A Round Ruby"
 
+  test "link tag href substitution", ->
+    t = localizableTagWithRel("a", "test.link", href: "http://fail", text: "fail")
+    t.localize("test", @testOpts)
+    equal t.attr("href"), "http://success"
+    equal t.text(), "success"
+
   test "chained call", ->
     t = localizableTagWithRel("p", "basic", text: "basic fail")
     t.localize("test", @testOpts).localize("test", @testOpts)

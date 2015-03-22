@@ -96,6 +96,7 @@ do ($ = jQuery) ->
 
     localizeForSpecialKeys = (elem, value) ->
       setAttrFromValueForKey(elem, "title", value)
+      setAttrFromValueForKey(elem, "href", value)
       setTextFromValueForKey(elem, "text", value)
 
     localizeOptgroupElement = (elem, key, value) ->
