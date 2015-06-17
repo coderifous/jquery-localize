@@ -49,7 +49,9 @@ do ($ = jQuery) ->
         notifyDelegateLanguageLoaded(intermediateLangData)
         loadLanguage(pkg, lang, level + 1)
       errorFunc = ->
-        if options.fallback && options.fallback != lang
+        if level <= 2
+          loadLanguage(pkg, lang, level + 1)
+        else if options.fallback && options.fallback != lang
           loadLanguage(pkg, options.fallback)
       ajaxOptions =
         url: file
