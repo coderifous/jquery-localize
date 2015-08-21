@@ -17,7 +17,7 @@ do ($ = jQuery) ->
     lang
 
   # Mozilla uses .language, IE uses .userLanguage
-  $.defaultLanguage = normaliseLang(navigator.language || navigator.userLanguage)
+  $.defaultLanguage = normaliseLang(if navigator.languages then navigator.languages[0] else navigator.language or navigator.userLanguage)
 
   $.localize = (pkg, options = {}) ->
     wrappedSet           = this

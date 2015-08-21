@@ -16,7 +16,7 @@ http://keith-wood.name/localisation.html
     }
     return lang;
   };
-  $.defaultLanguage = normaliseLang(navigator.language || navigator.userLanguage);
+  $.defaultLanguage = normaliseLang(navigator.languages ? navigator.languages[0] : navigator.language || navigator.userLanguage);
   $.localize = function(pkg, options) {
     var defaultCallback, fileExtension, intermediateLangData, jsonCall, lang, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, valueForKey, wrappedSet;
     if (options == null) {
