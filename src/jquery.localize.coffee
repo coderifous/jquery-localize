@@ -54,7 +54,7 @@ do ($ = jQuery) ->
       ajaxOptions =
         url: file
         dataType: "json"
-        async: false
+        async: true
         timeout: if options.timeout? then options.timeout else 500
         success: successFunc
         error: errorFunc
