@@ -42,9 +42,9 @@ module.exports = (grunt) ->
             "1.8.3"
             "1.9.1"
             "1.10.2"
-            "1.11.0"
+            "1.11.3"
             "2.0.3"
-            "2.1.3"
+            "2.1.4"
           ].map((version) ->
             "http://localhost:<%= connect.server.options.port %>/test/localize.html?jquery=" + version
           )

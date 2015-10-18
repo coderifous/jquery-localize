@@ -7,7 +7,7 @@ A jQuery plugin that makes it easy to i18n your static web site.
 ## Synopsis
 * Lazily loads JSON translation files based on a simple naming convention.
 * By default, applies the translations to your document based on simple attribute convention.
-* Tested with jQuery versions 1.7.2, 1.8.3, 1.9.1, 1.10.2, 1.11.0, 2.0.3, 2.1.0
+* Tested with jQuery versions 1.7.2, 1.8.3, 1.9.1, 1.10.2, 1.11.3, 2.0.3, 2.1.4
 
 ## Getting Started
 Download the [production version][min] or the [development version][max].
