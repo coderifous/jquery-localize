@@ -41,16 +41,11 @@ http://keith-wood.name/localisation.html
           }
           break;
         case 2:
-          if (lang.length >= 2) {
-            file = "" + pkg + "-" + (lang.substring(0, 2)) + "." + fileExtension;
-            return jsonCall(file, pkg, lang, level);
-          }
-          break;
+          file = "" + pkg + "-" + (lang.split('-')[0]) + "." + fileExtension;
+          return jsonCall(file, pkg, lang, level);
         case 3:
-          if (lang.length >= 5) {
-            file = "" + pkg + "-" + (lang.substring(0, 5)) + "." + fileExtension;
-            return jsonCall(file, pkg, lang, level);
-          }
+          file = "" + pkg + "-" + (lang.split('-').slice(0, 2).join('-')) + "." + fileExtension;
+          return jsonCall(file, pkg, lang, level);
       }
     };
     jsonCall = function(file, pkg, lang, level) {
