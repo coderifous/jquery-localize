@@ -233,6 +233,18 @@
     t.localize("test", opts);
     return equal(t.text(), "country code success");
   });
+  test("three-letter language code", function() {
+    var opts, t;
+    opts = {
+      language: "ast",
+      pathPrefix: "lang"
+    };
+    t = localizableTagWithRel("p", "basic", {
+      text: "basic fail"
+    });
+    t.localize("test", opts);
+    return equal(t.text(), "basic success");
+  });
   module("Language optimization");
   test("skipping language using string match", function() {
     var opts, t;
