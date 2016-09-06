@@ -34,13 +34,11 @@ do ($ = jQuery) ->
           else
             loadLanguage(pkg, lang, 2)
         when 2
-          if lang.length >= 2
-            file = "#{pkg}-#{lang.substring(0, 2)}.#{fileExtension}"
-            jsonCall(file, pkg, lang, level)
+          file = "#{pkg}-#{lang.split('-')[0]}.#{fileExtension}"
+          jsonCall(file, pkg, lang, level)
         when 3
-          if lang.length >= 5
-            file = "#{pkg}-#{lang.substring(0, 5)}.#{fileExtension}"
-            jsonCall(file, pkg, lang, level)
+          file = "#{pkg}-#{lang.split('-').slice(0,2).join('-')}.#{fileExtension}"
+          jsonCall(file, pkg, lang, level)
 
     jsonCall = (file, pkg, lang, level) ->
       file = "#{options.pathPrefix}/#{file}" if options.pathPrefix?
