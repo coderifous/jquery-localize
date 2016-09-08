@@ -245,6 +245,18 @@
     t.localize("test", opts);
     return equal(t.text(), "basic success");
   });
+  test("language-country code with no language-only file", function() {
+    var opts, t;
+    opts = {
+      language: "zh-CN",
+      pathPrefix: "lang"
+    };
+    t = localizableTagWithRel("p", "basic", {
+      text: "basic fail"
+    });
+    t.localize("test", opts);
+    return equal(t.text(), "basic success");
+  });
   module("Language optimization");
   test("skipping language using string match", function() {
     var opts, t;

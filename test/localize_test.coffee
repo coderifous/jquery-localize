@@ -156,6 +156,13 @@ do ($ = jQuery) ->
     t.localize("test", opts)
     equal t.text(), "basic success"
 
+  # Ref: https://github.com/coderifous/jquery-localize/issues/47
+  test "language-country code with no language-only file", ->
+    opts = language: "zh-CN", pathPrefix: "lang"
+    t = localizableTagWithRel("p", "basic", text: "basic fail")
+    t.localize("test", opts)
+    equal t.text(), "basic success"
+
   module "Language optimization"
 
   test "skipping language using string match", ->
