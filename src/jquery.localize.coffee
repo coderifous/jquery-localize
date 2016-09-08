@@ -47,7 +47,11 @@ do ($ = jQuery) ->
         notifyDelegateLanguageLoaded(intermediateLangData)
         loadLanguage(pkg, lang, level + 1)
       errorFunc = ->
-        if options.fallback && options.fallback != lang
+        if level == 2 && lang.indexOf('-') > -1
+          # the language-only file may not exist, try the language-country file next
+          # (ref: https://github.com/coderifous/jquery-localize/issues/47)
+          loadLanguage(pkg, lang, level + 1)
+        else if options.fallback && options.fallback != lang
           loadLanguage(pkg, options.fallback)
       ajaxOptions =
         url: file
