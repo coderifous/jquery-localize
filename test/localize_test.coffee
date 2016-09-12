@@ -161,7 +161,7 @@ do ($ = jQuery) ->
     opts = language: "zh-CN", pathPrefix: "lang"
     t = localizableTagWithRel("p", "basic", text: "basic fail")
     t.localize("test", opts)
-    equal t.text(), "basic success"
+    equal t.text(), "basic success zh-CN"
 
   module "Language optimization"
 

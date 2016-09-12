@@ -255,7 +255,7 @@
       text: "basic fail"
     });
     t.localize("test", opts);
-    return equal(t.text(), "basic success");
+    return equal(t.text(), "basic success zh-CN");
   });
   module("Language optimization");
   test("skipping language using string match", function() {
