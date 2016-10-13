@@ -24,7 +24,6 @@ module.exports = (grunt) ->
         files:
           "dist/<%= pkg.name %>.js": "src/*.coffee"
           "test/localize_test.js": "test/localize_test.coffee"
-          "test/qunit_setup.js": "test/qunit_setup.coffee"
 
     uglify:
       options:

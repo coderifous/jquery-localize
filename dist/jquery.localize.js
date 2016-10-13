@@ -18,13 +18,14 @@ http://keith-wood.name/localisation.html
   };
   $.defaultLanguage = normaliseLang(navigator.languages && navigator.languages.length > 0 ? navigator.languages[0] : navigator.language || navigator.userLanguage);
   $.localize = function(pkg, options) {
-    var defaultCallback, fileExtension, intermediateLangData, jsonCall, lang, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, valueForKey, wrappedSet;
+    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, lang, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, valueForKey, wrappedSet;
     if (options == null) {
       options = {};
     }
     wrappedSet = this;
     intermediateLangData = {};
     fileExtension = options.fileExtension || "json";
+    deferred = $.Deferred();
     loadLanguage = function(pkg, lang, level) {
       var file;
       if (level == null) {
@@ -46,6 +47,8 @@ http://keith-wood.name/localisation.html
         case 3:
           file = "" + pkg + "-" + (lang.split('-').slice(0, 2).join('-')) + "." + fileExtension;
           return jsonCall(file, pkg, lang, level);
+        default:
+          return deferred.resolve();
       }
     };
     jsonCall = function(file, pkg, lang, level) {
@@ -68,7 +71,7 @@ http://keith-wood.name/localisation.html
       ajaxOptions = {
         url: file,
         dataType: "json",
-        async: false,
+        async: true,
         timeout: options.timeout != null ? options.timeout : 500,
         success: successFunc,
         error: errorFunc
@@ -178,9 +181,12 @@ http://keith-wood.name/localisation.html
       }
     };
     lang = normaliseLang(options.language ? options.language : $.defaultLanguage);
-    if (!(options.skipLanguage && lang.match(regexify(options.skipLanguage)))) {
+    if (options.skipLanguage && lang.match(regexify(options.skipLanguage))) {
+      deferred.resolve();
+    } else {
       loadLanguage(pkg, lang, 1);
     }
+    wrappedSet.localizePromise = deferred;
     return wrappedSet;
   };
   $.fn.localize = $.localize;

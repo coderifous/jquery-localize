@@ -2,7 +2,7 @@
   "name": "jquery.localize",
   "title": "Localize",
   "description": "A jQuery plugin that makes it easy to i18n your static web site.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/coderifous/jquery-localize",
   "author": {
     "name": "coderifous",

@@ -23,6 +23,7 @@ do ($ = jQuery) ->
     wrappedSet           = this
     intermediateLangData = {}
     fileExtension        = options.fileExtension || "json"
+    deferred = $.Deferred()
 
     loadLanguage = (pkg, lang, level = 1) ->
       switch level
@@ -39,6 +40,9 @@ do ($ = jQuery) ->
         when 3
           file = "#{pkg}-#{lang.split('-').slice(0,2).join('-')}.#{fileExtension}"
           jsonCall(file, pkg, lang, level)
+        else
+          # ensure deferred is resolved
+          deferred.resolve()
 
     jsonCall = (file, pkg, lang, level) ->
       file = "#{options.pathPrefix}/#{file}" if options.pathPrefix?
@@ -56,7 +60,7 @@ do ($ = jQuery) ->
       ajaxOptions =
         url: file
         dataType: "json"
-        async: false
+        async: true
         timeout: if options.timeout? then options.timeout else 500
         success: successFunc
         error: errorFunc
@@ -133,7 +137,12 @@ do ($ = jQuery) ->
         string_or_regex_or_array
 
     lang = normaliseLang(if options.language then options.language else $.defaultLanguage)
-    loadLanguage(pkg, lang, 1) unless (options.skipLanguage && lang.match(regexify(options.skipLanguage)))
+    if (options.skipLanguage && lang.match(regexify(options.skipLanguage)))
+      deferred.resolve()
+    else
+      loadLanguage(pkg, lang, 1)
+
+    wrappedSet.localizePromise = deferred
 
     wrappedSet
 
