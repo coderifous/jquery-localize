@@ -58,11 +58,14 @@ do ($ = jQuery) ->
     t.localize("test", testOpts).localizePromise.then ->
       assert.equal t.val(), "input success"
 
-  test "input taasyncT value after second localization without key", (assert) ->
+  asyncTest "input test value after second localization without key", (assert) ->
     t = localizableTagWithRel("input", "test.input", val: "input fail")
+    d = $.Deferred()
     t.localize("test", testOpts).localizePromise.then ->
       t.localize("test2", testOpts).localizePromise.then ->
         assert.equal t.val(), "input success"
+        d.resolve()
+    d
 
   asyncTest "input tag placeholder substitution", (assert) ->
     t = localizableTagWithRel("input", "test.input", placeholder: "placeholder fail")

@@ -94,16 +94,19 @@
       return assert.equal(t.val(), "input success");
     });
   });
-  test("input taasyncT value after second localization without key", function(assert) {
-    var t;
+  asyncTest("input test value after second localization without key", function(assert) {
+    var d, t;
     t = localizableTagWithRel("input", "test.input", {
       val: "input fail"
     });
-    return t.localize("test", testOpts).localizePromise.then(function() {
+    d = $.Deferred();
+    t.localize("test", testOpts).localizePromise.then(function() {
       return t.localize("test2", testOpts).localizePromise.then(function() {
-        return assert.equal(t.val(), "input success");
+        assert.equal(t.val(), "input success");
+        return d.resolve();
       });
     });
+    return d;
   });
   asyncTest("input tag placeholder substitution", function(assert) {
     var t;
