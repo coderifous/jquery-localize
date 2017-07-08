@@ -18,7 +18,7 @@ http://keith-wood.name/localisation.html
   };
   $.defaultLanguage = normaliseLang(navigator.languages && navigator.languages.length > 0 ? navigator.languages[0] : navigator.language || navigator.userLanguage);
   $.localize = function(pkg, options) {
-    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, lang, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, valueForKey, wrappedSet;
+    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, translateFromFile, translateFromObject, valueForKey, wrappedSet;
     if (options == null) {
       options = {};
     }
@@ -180,11 +180,25 @@ http://keith-wood.name/localisation.html
         return string_or_regex_or_array;
       }
     };
-    lang = normaliseLang(options.language ? options.language : $.defaultLanguage);
-    if (options.skipLanguage && lang.match(regexify(options.skipLanguage))) {
-      deferred.resolve();
+    translateFromFile = function() {
+      var lang;
+      lang = normaliseLang(options.language ? options.language : $.defaultLanguage);
+      if (options.skipLanguage && lang.match(regexify(options.skipLanguage))) {
+        return deferred.resolve();
+      } else {
+        return loadLanguage(pkg, lang, 1);
+      }
+    };
+    translateFromObject = function(object) {
+      var data;
+      data = JSON.parse(JSON.stringify(object));
+      defaultCallback(data);
+      return deferred.resolve();
+    };
+    if (typeof pkg === "object") {
+      translateFromObject(pkg);
     } else {
-      loadLanguage(pkg, lang, 1);
+      translateFromFile();
     }
     wrappedSet.localizePromise = deferred;
     return wrappedSet;
