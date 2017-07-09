@@ -162,9 +162,11 @@ $("[data-localize]").localize("application", {
 See the _examples_ folder for working examples.
 
 ### Using raw objects as data source
-Given you can't have your texts stored inside of a json file that follows the naming convention defined earlier, you may also pass a raw javascript object to the 'localize' method, just like this:
+Given you can't have your texts stored inside of a json file that follows the naming convention defined earlier, you may also pass a raw javascript object to the `localize` plugin, just like this:
 
 ```javascript
+// Define a javascript object with your texts
+// Its structure must match that of a json object
 var myTexts = {
     "app": {
         "name": "MyApp",
@@ -177,15 +179,15 @@ var myTexts = {
 $("[data-localize]").localize(myTexts);
 ```
 
-The way of referencing the different object properties from the html file is exactly the same as before. In the following example, the 'p' tag content will be replaced with the value of the 'app.name' property inside our 'myTexts' object:
+The way of referencing the different object properties from the html file is exactly the same as before. In the following example, the `p` tag content will be replaced with the value of the `app.name` property inside our `myTexts` object:
 
 ```html
 <p data-localize="app.name">(text to replace)</p>
 ```
 
-This feature might be useful if you'll be retrieving your texts from an external service whose url doesn't match the _'{pathPrefix}/{filename}-{lang}.{extension}'_ syntax.
+This feature might be useful if you'll be retrieving your texts from an external service whose url doesn't match the `"{pathPrefix}/{filename}-{lang}.{extension}"` syntax.
 
-In that case, you'll need to perform an ajax request to said service from inside your own code and call 'localize' by passing in the results returned by the server:
+In that case, you'll need to perform an ajax request to said service from inside your own code and call `localize` by passing in the results returned by the server:
 
 ```javascript
 $.ajax({
@@ -199,7 +201,7 @@ $.ajax({
 });
 ```
 
-Remember to keep a json friendly structure for every object you send as an argument to 'localize', such as in the previous examples.
+Remember to keep a json friendly structure for every object you send as an argument to `localize`, such as in the previous examples.
 
 # Contributing
 
