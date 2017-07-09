@@ -26,10 +26,6 @@
     <p data-localize="basic">It failed :(</p>
     <p data-localize="message">Optional callback never happened.</p>
 
-    <p data-localize="function">This text should remain unchanged</p>
-    <input data-localize="function" type="text" value="fixed value" readonly />
-    <input data-localize="added_function" type="text" value="fixed value" readonly />
-
     <script type="text/javascript" charset="utf-8">
       $(function(){
         var object = {
@@ -56,13 +52,11 @@
           "with_title": {
             "text": "with_title text success",
             "title": "with_title title success"
-          },
-          "function": function () {}
+          }
         };
 
         var customCallback = function(data, defaultCallback) {
           data.message = "Optional call back works.";
-          data.added_function = function () {};
           defaultCallback(data);
         };
 
