@@ -177,10 +177,9 @@ var myTexts = {
 $("[data-localize]").localize(myTexts);
 ```
 
-The way of referencing the different object properties from the html file is exactly the same as before.
+The way of referencing the different object properties from the html file is exactly the same as before. In the following example, the 'p' tag content will be replaced with the value of the 'app.name' property inside our 'myTexts' object:
 
 ```html
-<!-- The 'p' tag content will be replaced with the value of the 'app.name' property inside our 'myTexts' object -->
 <p data-localize="app.name">(text to replace)</p>
 ```
 
