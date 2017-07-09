@@ -136,11 +136,33 @@ do ($ = jQuery) ->
       else
         string_or_regex_or_array
 
-    lang = normaliseLang(if options.language then options.language else $.defaultLanguage)
-    if (options.skipLanguage && lang.match(regexify(options.skipLanguage)))
+    # Retrieve translations from an external file depending on required language
+    useFileAsDataSource = (filename) ->
+      lang = normaliseLang(if options.language then options.language else $.defaultLanguage)
+      if (options.skipLanguage && lang.match(regexify(options.skipLanguage)))
+        deferred.resolve()
+      else
+        loadLanguage(filename, lang, 1)
+
+    # We stringify and parse the received object to ensure the object is a valid json
+    # Any functions defined within the object will be removed during this process
+    sanitizedCallback = (object) ->
+      data = JSON.parse(JSON.stringify(object))
+      defaultCallback(data)
+
+    # Retrieve translations from an object
+    useObjectAsDataSource = (object) ->
+      if options.callback?
+        options.callback(object, sanitizedCallback)
+      else
+        sanitizedCallback(object)
       deferred.resolve()
+
+    # If 'pkg' is an object, use it as the source for translations
+    if typeof(pkg) == "object"
+      useObjectAsDataSource(pkg)
     else
-      loadLanguage(pkg, lang, 1)
+      useFileAsDataSource(pkg)
 
     wrappedSet.localizePromise = deferred
 
