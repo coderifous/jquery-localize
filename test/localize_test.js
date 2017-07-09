@@ -348,7 +348,7 @@
       return assert.equal(t.text(), "en not loaded");
     });
   });
-  return asyncTest("skipping region language using array match", function(assert) {
+  asyncTest("skipping region language using array match", function(assert) {
     var opts, t;
     opts = {
       language: "en-US",
@@ -360,6 +360,31 @@
     });
     return t.localize("test", opts).localizePromise.then(function() {
       return assert.equal(t.text(), "en-US not loaded");
+    });
+  });
+  module("Using object as data source");
+  asyncTest("basic tag text substitution using object as data source", function(assert) {
+    var obj, t;
+    obj = {
+      "basic": "basic success"
+    };
+    t = localizableTagWithRel("p", "basic", {
+      text: "basic fail"
+    });
+    return t.localize(obj).localizePromise.then(function() {
+      return assert.equal(t.text(), "basic success");
+    });
+  });
+  return asyncTest("don't replace tag text if matching object property contains a function", function(assert) {
+    var obj, t;
+    obj = {
+      "function": (function() {})
+    };
+    t = localizableTagWithRel("p", "function", {
+      text: "This text should remain unchanged"
+    });
+    return t.localize(obj).localizePromise.then(function() {
+      return assert.equal(t.text(), "This text should remain unchanged");
     });
   });
 })(jQuery);

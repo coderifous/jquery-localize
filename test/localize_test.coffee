@@ -203,3 +203,18 @@ do ($ = jQuery) ->
     t = localizableTagWithRel("p", "en_us_message", text: "en-US not loaded")
     t.localize("test", opts).localizePromise.then ->
       assert.equal t.text(), "en-US not loaded"
+
+  # Ref: https://github.com/coderifous/jquery-localize/issues/62
+  module "Using object as data source"
+
+  asyncTest "basic tag text substitution using object as data source", (assert) ->
+    obj = { "basic": "basic success" }
+    t = localizableTagWithRel("p", "basic", text: "basic fail")
+    t.localize(obj).localizePromise.then ->
+      assert.equal t.text(), "basic success"
+
+  asyncTest "don't replace tag text if matching object property contains a function", (assert) ->
+    obj = { "function": (->) }
+    t = localizableTagWithRel("p", "function", text: "This text should remain unchanged")
+    t.localize(obj).localizePromise.then ->
+      assert.equal t.text(), "This text should remain unchanged"
