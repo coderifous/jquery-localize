@@ -208,13 +208,37 @@ do ($ = jQuery) ->
   module "Using object as data source"
 
   asyncTest "basic tag text substitution using object as data source", (assert) ->
-    obj = { "basic": "basic success" }
+    obj = basic: "basic success"
     t = localizableTagWithRel("p", "basic", text: "basic fail")
     t.localize(obj).localizePromise.then ->
       assert.equal t.text(), "basic success"
 
-  asyncTest "don't replace tag text if matching object property contains a function", (assert) ->
-    obj = { "function": (->) }
-    t = localizableTagWithRel("p", "function", text: "This text should remain unchanged")
+  asyncTest "custom callback is fired when object is used as data source", (assert) ->
+    opts = {}
+    opts.callback = (data, defaultCallback) ->
+      data.custom_callback = "custom callback success"
+      defaultCallback(data)
+    t = localizableTagWithRel("p", "custom_callback", text: "custom callback fail")
+    t.localize({}, opts).localizePromise.then ->
+      assert.equal t.text(), "custom callback success"
+
+  asyncTest "tag text must not be replaced if matching object property contains a function", (assert) ->
+    obj = "function": (->)
+    t = localizableTagWithRel("p", "function", text: "this text should remain unchanged")
     t.localize(obj).localizePromise.then ->
-      assert.equal t.text(), "This text should remain unchanged"
+      assert.equal t.text(), "this text should remain unchanged"
+
+  asyncTest "input value must not be replaced if matching object property contains a function", (assert) ->
+    obj = "function": (->)
+    t = localizableTagWithRel("input", "function", text: "remain after default callback")
+    t.localize(obj).localizePromise.then ->
+      assert.equal t.text(), "remain after default callback"
+
+  asyncTest "input value must not be replaced if custom callback introduced a matching property that contains a function", (assert) ->
+    opts = {}
+    opts.callback = (data, defaultCallback) ->
+      data.added_function = (->)
+      defaultCallback(data)
+    t = localizableTagWithRel("input", "added_function", text: "remain after custom callback")
+    t.localize({}, opts).localizePromise.then ->
+      assert.equal t.text(), "remain after custom callback"

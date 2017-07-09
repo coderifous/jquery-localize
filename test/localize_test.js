@@ -366,7 +366,7 @@
   asyncTest("basic tag text substitution using object as data source", function(assert) {
     var obj, t;
     obj = {
-      "basic": "basic success"
+      basic: "basic success"
     };
     t = localizableTagWithRel("p", "basic", {
       text: "basic fail"
@@ -375,16 +375,56 @@
       return assert.equal(t.text(), "basic success");
     });
   });
-  return asyncTest("don't replace tag text if matching object property contains a function", function(assert) {
+  asyncTest("custom callback is fired when object is used as data source", function(assert) {
+    var opts, t;
+    opts = {};
+    opts.callback = function(data, defaultCallback) {
+      data.custom_callback = "custom callback success";
+      return defaultCallback(data);
+    };
+    t = localizableTagWithRel("p", "custom_callback", {
+      text: "custom callback fail"
+    });
+    return t.localize({}, opts).localizePromise.then(function() {
+      return assert.equal(t.text(), "custom callback success");
+    });
+  });
+  asyncTest("tag text must not be replaced if matching object property contains a function", function(assert) {
     var obj, t;
     obj = {
       "function": (function() {})
     };
     t = localizableTagWithRel("p", "function", {
-      text: "This text should remain unchanged"
+      text: "this text should remain unchanged"
     });
     return t.localize(obj).localizePromise.then(function() {
-      return assert.equal(t.text(), "This text should remain unchanged");
+      return assert.equal(t.text(), "this text should remain unchanged");
+    });
+  });
+  asyncTest("input value must not be replaced if matching object property contains a function", function(assert) {
+    var obj, t;
+    obj = {
+      "function": (function() {})
+    };
+    t = localizableTagWithRel("input", "function", {
+      text: "remain after default callback"
+    });
+    return t.localize(obj).localizePromise.then(function() {
+      return assert.equal(t.text(), "remain after default callback");
+    });
+  });
+  return asyncTest("input value must not be replaced if custom callback introduced a matching property that contains a function", function(assert) {
+    var opts, t;
+    opts = {};
+    opts.callback = function(data, defaultCallback) {
+      data.added_function = (function() {});
+      return defaultCallback(data);
+    };
+    t = localizableTagWithRel("input", "added_function", {
+      text: "remain after custom callback"
+    });
+    return t.localize({}, opts).localizePromise.then(function() {
+      return assert.equal(t.text(), "remain after custom callback");
     });
   });
 })(jQuery);

@@ -18,7 +18,7 @@ http://keith-wood.name/localisation.html
   };
   $.defaultLanguage = normaliseLang(navigator.languages && navigator.languages.length > 0 ? navigator.languages[0] : navigator.language || navigator.userLanguage);
   $.localize = function(pkg, options) {
-    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, useFileAsDataSource, useObjectAsDataSource, valueForKey, wrappedSet;
+    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, sanitizedCallback, setAttrFromValueForKey, setTextFromValueForKey, useFileAsDataSource, useObjectAsDataSource, valueForKey, wrappedSet;
     if (options == null) {
       options = {};
     }
@@ -189,10 +189,17 @@ http://keith-wood.name/localisation.html
         return loadLanguage(filename, lang, 1);
       }
     };
-    useObjectAsDataSource = function(object) {
+    sanitizedCallback = function(object) {
       var data;
       data = JSON.parse(JSON.stringify(object));
-      defaultCallback(data);
+      return defaultCallback(data);
+    };
+    useObjectAsDataSource = function(object) {
+      if (options.callback != null) {
+        options.callback(object, sanitizedCallback);
+      } else {
+        sanitizedCallback(object);
+      }
       return deferred.resolve();
     };
     if (typeof pkg === "object") {

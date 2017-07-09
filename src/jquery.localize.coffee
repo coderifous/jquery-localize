@@ -144,12 +144,18 @@ do ($ = jQuery) ->
       else
         loadLanguage(filename, lang, 1)
 
-    # Retrieve translations from an object
-    useObjectAsDataSource = (object) ->
-      # We stringify and parse the received object to ensure the object is a valid json
-      # Any functions defined within the object will be removed during this process
+    # We stringify and parse the received object to ensure the object is a valid json
+    # Any functions defined within the object will be removed during this process
+    sanitizedCallback = (object) ->
       data = JSON.parse(JSON.stringify(object))
       defaultCallback(data)
+
+    # Retrieve translations from an object
+    useObjectAsDataSource = (object) ->
+      if options.callback?
+        options.callback(object, sanitizedCallback)
+      else
+        sanitizedCallback(object)
       deferred.resolve()
 
     # If 'pkg' is an object, use it as the source for translations

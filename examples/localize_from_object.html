@@ -24,7 +24,12 @@
       Ruby image should be round.
     </p>
     <p data-localize="basic">It failed :(</p>
+    <p data-localize="message">Optional callback never happened.</p>
+
     <p data-localize="function">This text should remain unchanged</p>
+    <input data-localize="function" type="text" value="fixed value" readonly />
+    <input data-localize="added_function" type="text" value="fixed value" readonly />
+
     <script type="text/javascript" charset="utf-8">
       $(function(){
         var object = {
@@ -55,7 +60,14 @@
           "function": function () {}
         };
 
-        $("[data-localize]").localize(object);
+        var customCallback = function(data, defaultCallback) {
+          data.message = "Optional call back works.";
+          data.added_function = function () {};
+          defaultCallback(data);
+        };
+
+        var opts = { callback: customCallback };
+        $("[data-localize]").localize(object, opts);
       })
     </script>
   </body>
