@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Localize Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../dist/jquery.localize.min.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+
+  <body>
+    <h1>Test localization...</h1>
+    <h2 data-localize="app.name">Waiting for server response...</h2>
+    <h3 data-localize="app.version">Waiting for server response...</h3>
+    <p data-localize="app.description">
+        Waiting for server response...
+    </p>
+
+    <script type="text/javascript" charset="utf-8">
+      $(function(){
+        $.ajax({
+          method: "GET",
+          url: "res/ws-response",
+          data: { lang: "en" },
+          dataType: "json",
+          success: function (data) {
+            $("[data-localize]").localize(data);
+          }
+        });
+      })
+    </script>
+  </body>
+
+</html>
