@@ -18,7 +18,7 @@ http://keith-wood.name/localisation.html
   };
   $.defaultLanguage = normaliseLang(navigator.languages && navigator.languages.length > 0 ? navigator.languages[0] : navigator.language || navigator.userLanguage);
   $.localize = function(pkg, options) {
-    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, translateFromFile, translateFromObject, valueForKey, wrappedSet;
+    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, useFileAsDataSource, useObjectAsDataSource, valueForKey, wrappedSet;
     if (options == null) {
       options = {};
     }
@@ -180,25 +180,25 @@ http://keith-wood.name/localisation.html
         return string_or_regex_or_array;
       }
     };
-    translateFromFile = function() {
+    useFileAsDataSource = function(filename) {
       var lang;
       lang = normaliseLang(options.language ? options.language : $.defaultLanguage);
       if (options.skipLanguage && lang.match(regexify(options.skipLanguage))) {
         return deferred.resolve();
       } else {
-        return loadLanguage(pkg, lang, 1);
+        return loadLanguage(filename, lang, 1);
       }
     };
-    translateFromObject = function(object) {
+    useObjectAsDataSource = function(object) {
       var data;
       data = JSON.parse(JSON.stringify(object));
       defaultCallback(data);
       return deferred.resolve();
     };
     if (typeof pkg === "object") {
-      translateFromObject(pkg);
+      useObjectAsDataSource(pkg);
     } else {
-      translateFromFile();
+      useFileAsDataSource(pkg);
     }
     wrappedSet.localizePromise = deferred;
     return wrappedSet;
